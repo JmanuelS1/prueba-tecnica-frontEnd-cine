@@ -119,7 +119,17 @@ export default function MovieDetails({ movie }: MovieDetailsProps): JSX.Element 
    */
   const handleToggleFavorite = (): void => {
     if (isAuthenticated) {
-      toggleFavorite(movie);
+      const movieForFavorite = {
+        id: movie.id,
+        title: movie.title,
+        backdrop_path: movie.backdrop_path,
+        poster_path: movie.poster_path,
+        overview: movie.overview,
+        vote_average: movie.vote_average,
+        release_date: movie.release_date,
+        genre_ids: movie.genres.map(genre => genre.id)
+      };
+      toggleFavorite(movieForFavorite);
     } else {
       toggleLoginModal();
     }
