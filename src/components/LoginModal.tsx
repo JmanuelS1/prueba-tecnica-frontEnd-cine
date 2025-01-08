@@ -3,12 +3,12 @@
 /**
  * Importaciones necesarias para el componente de autenticación
  */
-import { useAuth } from '@/hooks/useAuth';
-import { useEffect, useState } from 'react';
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
-import { Button } from './ui/Button';
-import { Input } from './ui/Input';
-import Image from 'next/image';
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
+import Image from "next/image";
 
 /**
  * Componente Modal de Autenticación
@@ -28,12 +28,12 @@ export default function AuthModal() {
    */
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -45,14 +45,14 @@ export default function AuthModal() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
     };
-    
+
     if (isLoginView) {
       await login(data);
     } else {
-      console.log('Register functionality is not implemented', data);
+      console.log("Register functionality is not implemented", data);
     }
   };
 
@@ -174,13 +174,14 @@ export default function AuthModal() {
               <div className="w-1/2 bg-gray-800 p-8 flex flex-col h-full">
                 <div className="flex flex-col flex-1 justify-center items-center text-center">
                   <h3 className="text-2xl font-bold text-white mb-4">
-                    {isLoginView ? 'Welcome back to' : 'Welcome to'} Quickbet Movies!
+                    {isLoginView ? "Welcome back to" : "Welcome to"} Quickbet Movies!
                   </h3>
                   <div className="h-20 mb-8">
                     <p className="text-gray-300">
                       {isLoginView 
-                        ? '🍿 Ready to dive into the world of unlimited entertainment? Enter your credentials and let the cinematic adventure begin!'
-                        : '🎬 Ready to unlock a universe of cinematic delights? Sign up now and start your journey with us!'}
+                        ? "🍿 Ready to dive into the world of unlimited entertainment? Enter your credentials and let the cinematic adventure begin!"
+                        : "🎬 Ready to unlock a universe of cinematic delights? Sign up now and start your journey with us!"
+                      }
                     </p>
                   </div>
                   <div className="relative w-full flex-1">

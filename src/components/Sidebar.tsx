@@ -4,7 +4,7 @@
  * Importaciones necesarias para el componente Sidebar
  */
 import React, { useState, useEffect } from "react";
-import { BiSearch, BiChevronDown, BiX } from "react-icons/bi";
+import { BiSearch, BiChevronDown } from "react-icons/bi";
 import { Input } from "./ui/Input";
 import { Movie } from "@/types/Movie";
 import { useDispatch } from "react-redux";
@@ -164,7 +164,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
           {/* Lista de sugerencias de keywords */}
           {keywords.length > 0 && (
             <ul className="absolute top-[100%] left-0 w-full z-10 text-white bg-inputGrey border border-gray-700 rounded-md shadow-lg">
-              {keywords.map(keyword => (
+              {keywords.map((keyword) => (
                 <li 
                   key={keyword.id}
                   onClick={() => {

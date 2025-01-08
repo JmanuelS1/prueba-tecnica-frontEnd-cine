@@ -3,13 +3,13 @@
 /**
  * Importaciones necesarias para el componente MovieDetails
  */
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { FaArrowLeft, FaHeart, FaTimes } from 'react-icons/fa';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FaArrowLeft, FaHeart, FaTimes } from "react-icons/fa";
 import { CiPlay1 } from "react-icons/ci";
-import { Button } from '@/components/ui/Button';
-import { useFavorites } from '@/hooks/useFavorites'; 
+import { Button } from "@/components/ui/Button";
+import { useFavorites } from "@/hooks/useFavorites";
 import { useAuth } from '@/hooks/useAuth'; 
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
 
@@ -61,11 +61,11 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
 
   const formatDate = (date: string) => {
     const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     };
-    return new Date(date).toLocaleDateString('en-US', options);
+    return new Date(date).toLocaleDateString("en-US", options);
   };
 
   useEffect(() => {
@@ -73,15 +73,15 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
       try {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
         if (!response.ok) {
-          throw new Error('Error al obtener el tráiler');
+          throw new Error("Error al obtener el tráiler");
         }
         const data = await response.json();
         const trailer = data.results.find((video: MovieVideo) =>
-          video.type === 'Trailer' && video.site === 'YouTube'
+          video.type === "Trailer" && video.site === "YouTube"
         );
         setTrailer(trailer || null);
       } catch (error) {
-        console.error('Error al obtener el tráiler:', error);
+        console.error("Error al obtener el tráiler:", error);
       }
     };
 
@@ -89,12 +89,12 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
       try {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/recommendations?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
         if (!response.ok) {
-          throw new Error('Error al obtener las recomendaciones');
+          throw new Error("Error al obtener las recomendaciones");
         }
         const data = await response.json();
         setRecommendations(data.results.slice(0, 6));
       } catch (error) {
-        console.error('Error al obtener las recomendaciones:', error);
+        console.error("Error al obtener las recomendaciones:", error);
       }
     };
 

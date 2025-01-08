@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
 /**
  * Importaciones necesarias para la página principal
  */
-import React, { useState, useEffect } from 'react';
-import Navbar from '@/components/Navbar';
-import Sidebar from '@/components/Sidebar';
-import Hero from '@/components/Hero';
-import MovieGrid from '@/components/MovieGrid';
-import LoginModal from '@/components/LoginModal';
-import MovieLoading from '@/components/MovieLoading';
-import { Movie } from '@/types/Movie';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
+import Hero from "@/components/Hero";
+import MovieGrid from "@/components/MovieGrid";
+import LoginModal from "@/components/LoginModal";
+import MovieLoading from "@/components/MovieLoading";
+import { Movie } from "@/types/Movie";
+import { useSelector } from "react-redux";
 
 /**
  * Configuración de las URLs de la API
@@ -39,9 +39,9 @@ const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US
  */
 async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
+      accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
   };
@@ -54,7 +54,7 @@ async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error al realizar la petición:', error);
+    console.error("Error al realizar la petición:", error);
     return null;
   }
 }

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 /**
  * Importaciones necesarias para el componente de carga
  */
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 /**
  * Componente MovieLoading
@@ -37,7 +37,7 @@ const MovieLoading = () => {
           <motion.div
             className="w-16 h-16 border-4 border-white rounded-full border-t-transparent"
             animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
+            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
           />
         </div>
         {/* Barra de progreso */}
@@ -45,7 +45,7 @@ const MovieLoading = () => {
           className="absolute bottom-0 left-0 right-0 h-1 bg-white"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'linear' }}
+          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
         />
       </div>
       {/* Texto de carga con efecto de parpadeo */}
@@ -53,7 +53,7 @@ const MovieLoading = () => {
         className="absolute mt-24 text-white text-xl font-bold"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ repeat: Infinity, duration: 1, repeatType: 'reverse' }}
+        transition={{ repeat: Infinity, duration: 1, repeatType: "reverse" }}
       >
         Loading Movies...
       </motion.p>

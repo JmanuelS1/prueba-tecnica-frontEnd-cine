@@ -3,7 +3,7 @@
  */
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay } from "react-icons/fa";
 
 /**
  * Interface para las propiedades del TrailerModal

@@ -1,7 +1,7 @@
 /**
  * Importación de Zustand para manejo de estado global
  */
-import { create } from 'zustand';
+import { create } from "zustand";
 
 /**
  * Interface que define la estructura del estado del modal de login

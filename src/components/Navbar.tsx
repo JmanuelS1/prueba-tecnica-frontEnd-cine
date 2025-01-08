@@ -3,12 +3,12 @@
 /**
  * Importaciones necesarias para el componente Navbar
  */
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaUserCircle } from 'react-icons/fa';
-import { useAuth } from '@/hooks/useAuth';
-import LoginModal from './LoginModal';
-import { MdLogout } from 'react-icons/md';
+import Image from "next/image";
+import Link from "next/link";
+import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from "@/hooks/useAuth";
+import LoginModal from "./LoginModal";
+import { MdLogout } from "react-icons/md";
 
 /**
  * Componente Navbar

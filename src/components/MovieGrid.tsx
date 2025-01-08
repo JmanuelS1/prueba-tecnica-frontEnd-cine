@@ -116,7 +116,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
         }}
         modules={[EffectCube]}
         className="w-full overflow-hidden" 
-        style={{ overflow: 'hidden' }}
+        style={{ overflow: "hidden" }}
       >
         {/* Mapeo de películas */}
         {movies.map((movie) => (

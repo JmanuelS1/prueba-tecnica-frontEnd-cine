@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { FaHeart } from 'react-icons/fa';
-import { useFavorites } from '@/hooks/useFavorites';
-import { Button } from './ui/Button';
-import { useAuth } from '@/hooks/useAuth';
+import Image from "next/image";
+import { FaHeart } from "react-icons/fa";
+import { useFavorites } from "@/hooks/useFavorites";
+import { Button } from "./ui/Button";
+import { useAuth } from "@/hooks/useAuth";
 
 /**
  * Interface para las propiedades del componente Hero

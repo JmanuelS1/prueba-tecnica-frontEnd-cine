@@ -1,8 +1,8 @@
 /**
  * Importaciones necesarias para el store de favoritos
  */
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 /**
  * Interface que define la estructura del estado de favoritos
@@ -76,7 +76,7 @@ export const useFavorites = create<FavoritesState>()(
       },
     }),
     {
-      name: 'favorites-storage', // Nombre de la clave en localStorage
+      name: "favorites-storage", // Nombre de la clave en localStorage
     }
   )
 );

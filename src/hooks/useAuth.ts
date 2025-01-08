@@ -1,7 +1,7 @@
 /**
  * Importación de Zustand para manejo de estado global
  */
-import { create } from 'zustand';
+import { create } from "zustand";
 
 /**
  * Interface que define la estructura del estado de autenticación
@@ -59,10 +59,10 @@ export const useAuth = create<AuthState>((set) => ({
   closeModal: () => set({ isOpen: false }),
   login: async (credentials) => {
     // Simulación de autenticación
-    if (credentials.email === 'test@gmail.com' && credentials.password === 'pass') {
+    if (credentials.email === "test@gmail.com" && credentials.password === "pass") {
       set({ isAuthenticated: true, isOpen: false });
     } else {
-      alert('Credenciales incorrectas');
+      alert("Credenciales incorrectas");
     }
   },
   logout: () => set({ isAuthenticated: false }),
