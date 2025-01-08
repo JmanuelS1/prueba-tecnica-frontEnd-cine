@@ -16,6 +16,9 @@ import { useAuth } from "@/hooks/useAuth";
  * @property {string} movie.backdrop_path - Ruta de la imagen de fondo
  * @property {string} movie.overview - Descripción de la película
  * @property {number} movie.vote_average - Puntuación promedio (0-10)
+ * @property {string} movie.poster_path - Ruta del poster de la película
+ * @property {string} movie.release_date - Fecha de lanzamiento
+ * @property {number[]} movie.genre_ids - IDs de los géneros de la película
  */
 interface HeroProps {
   movie: {
@@ -24,6 +27,9 @@ interface HeroProps {
     backdrop_path: string;
     overview: string;
     vote_average: number;
+    poster_path: string;
+    release_date: string;
+    genre_ids: number[];
   };
 }
 
