@@ -2,6 +2,16 @@
 
 Este proyecto es una aplicación web de películas desarrollada como parte de un desafío técnico frontend. La aplicación permite a los usuarios explorar películas, ver detalles y gestionar sus favoritos.
 
+## 📖 Documentación Completa
+
+> **¡DESTACADO!** Este proyecto está completamente documentado, incluyendo:
+> - Documentación JSDoc en todos los componentes
+> - Tipos TypeScript completamente documentados
+> - Hooks personalizados con documentación detallada
+> - Documentación de Redux (reducers y store)
+> - Utilidades y helpers documentados
+> - Ejemplos de uso en cada módulo
+
 ## 🚀 Características
 
 - 🎬 Exploración de películas
