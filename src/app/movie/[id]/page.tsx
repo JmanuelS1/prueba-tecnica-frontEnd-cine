@@ -2,6 +2,7 @@
  * Importación del componente de detalles de película
  */
 import MovieDetails from "@/components/MovieDetails";
+import { type MovieDetail } from "@/types/Movie";
 
 /**
  * Configuración para forzar el renderizado dinámico en Next.js
@@ -15,13 +16,9 @@ export const dynamic = "force-dynamic";
  * @async
  * @function getMovie
  * @param {string} id - ID de la película a consultar
- * @returns {Promise<any>} Detalles de la película o null en caso de error
- *
- * @description
- * Realiza una petición GET a la API de TMDB para obtener información detallada
- * de una película específica usando su ID
+ * @returns {Promise<MovieDetail | null>} Detalles de la película o null en caso de error
  */
-async function getMovie(id: string) {
+async function getMovie(id: string): Promise<MovieDetail | null> {
   const options = {
     method: "GET",
     headers: {
@@ -40,7 +37,8 @@ async function getMovie(id: string) {
       throw new Error("Failed to fetch movie");
     }
 
-    return response.json();
+    const data: MovieDetail = await response.json();
+    return data;
   } catch (error) {
     console.error("Error fetching movie:", error);
     return null;
@@ -49,23 +47,12 @@ async function getMovie(id: string) {
 
 /**
  * Componente de página para mostrar detalles de una película específica
- *
- * @component MoviePage
- * @param {Object} props - Propiedades del componente
- * @param {Object} props.params - Parámetros de la ruta
- * @param {string} props.params.id - ID de la película a mostrar
- * @returns {Promise<JSX.Element>} Página de detalles de la película
- *
- * @description
- * Página que muestra los detalles completos de una película específica.
- * Utiliza Server Side Rendering para obtener los datos de la película
- * y mostrar un mensaje de error si la película no se puede cargar.
  */
 export default async function MoviePage({
   params,
 }: {
   params: { id: string };
-}) {
+}): Promise<JSX.Element> {
   const movie = await getMovie(params.id);
 
   // Manejo de error si no se puede cargar la película

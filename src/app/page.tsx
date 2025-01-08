@@ -10,7 +10,7 @@ import Hero from "@/components/Hero";
 import MovieGrid from "@/components/MovieGrid";
 import LoginModal from "@/components/LoginModal";
 import MovieLoading from "@/components/MovieLoading";
-import { type Movie } from "@/types/Movie";
+import { type Movie, type ApiResponse } from "@/types/Movie";
 import { useSelector } from "react-redux";
 
 /**
@@ -29,16 +29,7 @@ interface RootState {
 }
 
 /**
- * Interface para la respuesta de la API
- */
-interface ApiResponse {
-  results: Movie[];
-}
-
-/**
  * Configuración de las URLs de la API
- * @constant {string} apiKey - Clave de la API de TMDB
- * @constant {string} token - Token de autenticación
  */
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const token = process.env.NEXT_PUBLIC_TOKEN;
@@ -53,13 +44,8 @@ const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US
 
 /**
  * Función para realizar peticiones a la API de TMDB
- *
- * @async
- * @function fetchData
- * @param {string} url - URL del endpoint a consultar
- * @returns {Promise<ApiResponse | null>} Resultado de la petición o null en caso de error
  */
-async function fetchData(url: string): Promise<ApiResponse | null> {
+async function fetchData(url: string): Promise<ApiResponse<Movie> | null> {
   const options = {
     method: "GET",
     headers: {
@@ -73,7 +59,7 @@ async function fetchData(url: string): Promise<ApiResponse | null> {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    const data = await response.json();
+    const data: ApiResponse<Movie> = await response.json();
     return data;
   } catch (error) {
     console.error("Error al realizar la petición:", error);
@@ -125,10 +111,10 @@ export default function Home(): JSX.Element {
         fetchData(urlTopRated),
       ]);
 
-      setDataNowPlaying(nowPlaying?.results || []);
-      setDataPopular(popular?.results || []);
-      setDataUpComing(upComing?.results || []);
-      setDataTopRated(topRated?.results || []);
+      if (nowPlaying) setDataNowPlaying(nowPlaying.results);
+      if (popular) setDataPopular(popular.results);
+      if (upComing) setDataUpComing(upComing.results);
+      if (topRated) setDataTopRated(topRated.results);
       setIsLoading(false);
     }
 
