@@ -18,10 +18,8 @@ module.exports = {
   },
   ignorePatterns: [".eslintrc.js", "next.config.js", "tailwind.config.js", "postcss.config.js"],
   rules: {
-    // Imports
     "unused-imports/no-unused-imports": "error",
     "no-duplicate-imports": "error",
-    
     
     "@typescript-eslint/explicit-function-return-type": ["error", {
       allowExpressions: true,
@@ -36,12 +34,11 @@ module.exports = {
     "@typescript-eslint/no-unsafe-return": "warn",
     "@typescript-eslint/no-unsafe-argument": "warn",
     
-   
     "@typescript-eslint/naming-convention": [
       "error",
       {
         selector: "default",
-        format: ["camelCase"],
+        format: ["camelCase", "PascalCase"],
       },
       {
         selector: "variable",
@@ -61,20 +58,19 @@ module.exports = {
         format: ["UPPER_CASE", "PascalCase"],
       },
       {
-        selector: "objectLiteralProperty",
-        format: null, 
+        selector: "property",
+        format: null,
       },
+      {
+        selector: "import",
+        format: null,
+      }
     ],
 
+    // React
+    "react/no-unescaped-entities": "off",
     
-    "no-console": "warn",
-    "eqeqeq": ["error", "always"],
-    
-    
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    
-    
+    // Variables no utilizadas
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
