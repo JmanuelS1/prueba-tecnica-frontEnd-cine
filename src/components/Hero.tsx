@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { FaHeart } from 'react-icons/fa'
 import { useFavorites } from '@/hooks/useFavorites'
-import { Button } from './ui/button'
+import { Button } from './ui/Button'
 import { useAuth } from '@/hooks/useAuth'
 
 /**

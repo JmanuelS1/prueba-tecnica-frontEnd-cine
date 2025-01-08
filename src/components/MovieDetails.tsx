@@ -8,10 +8,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FaArrowLeft, FaHeart, FaTimes } from 'react-icons/fa';
 import { CiPlay1 } from "react-icons/ci";
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { useFavorites } from '@/hooks/useFavorites'; 
 import { useAuth } from '@/hooks/useAuth'; 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
 
 /**
  * Interface para los detalles de una película
