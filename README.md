@@ -1,29 +1,34 @@
-# prueba-tecnica-frontEnd-cine
-Frontend Challenge - Movie Platform
+# Frontend Challenge - Movie Platform
+
 Este proyecto es una aplicación web de películas desarrollada como parte de un desafío técnico frontend. La aplicación permite a los usuarios explorar películas, ver detalles y gestionar sus favoritos.
-🚀 Características
-🎬 Exploración de películas
-🔍 Búsqueda de películas
-❤️ Sistema de favoritos
-🔐 Autenticación de usuarios
-📱 Diseño responsivo
-🎨 Interfaz moderna y atractiva
-🛠️ Tecnologías Utilizadas
-Next.js 13
-TypeScript
-Tailwind CSS
-Zustand (Estado global)
-React Query
-React Icons
-📋 Prerrequisitos
-Node.js (versión 16 o superior)
-npm o yarn
-🔧 Instalación
+
+## 🚀 Características
+
+- 🎬 Exploración de películas
+- 🔍 Búsqueda de películas
+- ❤️ Sistema de favoritos
+- 🔐 Autenticación de usuarios
+- 📱 Diseño responsivo
+- 🎨 Interfaz moderna y atractiva
+
+## 🛠️ Tecnologías Utilizadas
+
+- Next.js 13
+- TypeScript
+- Tailwind CSS
+- Zustand (Estado global)
+- React Query
+- React Icons
+
+## 📋 Prerrequisitos
+
+- Node.js (versión 16 o superior)
+- npm o yarn
+
+## 🔧 Instalación
 
 1. Clona el repositorio:
-```bash
-git clone https://github.com/tu-usuario/frontend-challenge.git
-```
+
 
 2. Navega al directorio del proyecto:
 ```bash
