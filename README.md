@@ -4,13 +4,13 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 
 ## 📖 Documentación Completa
 
-> **¡DESTACADO!** Este proyecto está completamente documentado, incluyendo:
-> - Documentación JSDoc en todos los componentes
-> - Tipos TypeScript completamente documentados
-> - Hooks personalizados con documentación detallada
-> - Documentación de Redux (reducers y store)
-> - Utilidades y helpers documentados
-> - Ejemplos de uso en cada módulo
+ **¡DESTACADO!** Este proyecto está completamente documentado, incluyendo:
+ - Documentación JSDoc en todos los componentes
+ - Tipos TypeScript completamente documentados
+ - Hooks personalizados con documentación detallada
+ - Documentación de Redux (reducers y store)
+ - Utilidades y helpers documentados
+ - Ejemplos de uso en cada módulo
 
 ## 🚀 Características
 
