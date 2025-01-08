@@ -1,8 +1,8 @@
 /**
  * Importaciones necesarias para el componente TrailerModal
  */
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
+import { Button } from "@/components/ui/Button";
 import { FaPlay } from 'react-icons/fa';
 
 /**
