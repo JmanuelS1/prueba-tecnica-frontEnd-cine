@@ -31,7 +31,7 @@ const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US
 
 /**
  * Función para realizar peticiones a la API de TMDB
- * 
+ *
  * @async
  * @function fetchData
  * @param {string} url - URL del endpoint a consultar
@@ -61,20 +61,20 @@ async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
 
 /**
  * Componente principal de la página de inicio
- * 
+ *
  * @component Home
- * @description 
+ * @description
  * Página principal que muestra diferentes categorías de películas:
  * - Películas populares
  * - Películas en cartelera
  * - Próximos estrenos
  * - Películas mejor valoradas
- * 
+ *
  * Incluye funcionalidades de:
  * - Filtrado por género
  * - Búsqueda de películas
  * - Visualización de loading state
- * 
+ *
  * @returns {JSX.Element} Página principal de la aplicación
  */
 export default function Home() {
@@ -84,7 +84,7 @@ export default function Home() {
   const [dataUpComing, setDataUpComing] = useState<Movie[]>([]);
   const [dataTopRated, setDataTopRated] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Selectores de Redux para género y búsqueda
   const genre = useSelector((state: any) => state.genre);
   const search = useSelector((state: any) => state.search);
@@ -114,11 +114,20 @@ export default function Home() {
   }, []);
 
   // Lógica de filtrado de películas
-  const allMovies = [...dataNowPlaying, ...dataPopular, ...dataUpComing, ...dataTopRated];
+  const allMovies = [
+    ...dataNowPlaying,
+    ...dataPopular,
+    ...dataUpComing,
+    ...dataTopRated,
+  ];
   const genreIdToFilter = genre?.genre?.id;
-  const filteredMovies = search.search.length > 0
-    ? search.search
-    : allMovies.filter((movie) => movie.genre_ids && movie.genre_ids.includes(genreIdToFilter));
+  const filteredMovies =
+    search.search.length > 0
+      ? search.search
+      : allMovies.filter(
+          (movie) =>
+            movie.genre_ids && movie.genre_ids.includes(genreIdToFilter),
+        );
 
   if (isLoading) {
     return <MovieLoading />;
@@ -136,7 +145,11 @@ export default function Home() {
         <main className="flex-1 px-4 lg:px-8 bg-mainGrey">
           <div className="space-y-8 py-8">
             {filteredMovies.length > 0 && (
-              <MovieGrid title="Filtered Movies" genre={genre} movies={filteredMovies} />
+              <MovieGrid
+                title="Filtered Movies"
+                genre={genre}
+                movies={filteredMovies}
+              />
             )}
             {filteredMovies.length === 0 && (
               <>

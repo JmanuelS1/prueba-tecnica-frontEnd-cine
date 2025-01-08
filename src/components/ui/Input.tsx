@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 /**
  * Interface para las propiedades del Input
  * Extiende todas las propiedades nativas del elemento input HTML
- * 
+ *
  * @interface InputProps
  * @extends {React.InputHTMLAttributes<HTMLInputElement>}
  */
@@ -13,26 +13,26 @@ export interface InputProps
 
 /**
  * Componente Input personalizado
- * 
+ *
  * @component
  * @description
  * Un componente de entrada de texto reutilizable con estilos predefinidos y estados interactivos.
  * Soporta todos los atributos nativos de input HTML y permite personalización mediante className.
- * 
+ *
  * Características:
  * - Estilos base consistentes
  * - Estados de focus y disabled
  * - Soporte para archivos
  * - Personalizable mediante className
  * - Accesible
- * 
+ *
  * @example
  * // Input básico
  * <Input type="text" placeholder="Escribe algo..." />
- * 
+ *
  * // Input con clase personalizada
  * <Input className="custom-class" type="email" />
- * 
+ *
  * @param {Object} props - Propiedades del componente
  * @param {string} [props.className] - Clases CSS adicionales
  * @param {string} [props.type] - Tipo de input (text, email, password, etc.)
@@ -55,13 +55,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           // Estilos del placeholder
           "placeholder:text-muted-foreground",
           // Clases personalizadas
-          className
+          className,
         )}
         ref={ref}
         {...props}
       />
     );
-  }
+  },
 );
 
 // Nombre para DevTools

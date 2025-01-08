@@ -21,12 +21,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 /**
  * RootLayout - Componente principal que envuelve toda la aplicación
- * 
+ *
  * @component
  * @param {Object} props - Propiedades del componente
  * @param {React.ReactNode} props.children - Componentes hijos que serán renderizados dentro del layout
  * @returns {JSX.Element} Estructura HTML base de la aplicación
- * 
+ *
  * @description
  * Este componente representa el layout principal de la aplicación y:
  * - Implementa la directiva "use client" para renderizado en el cliente

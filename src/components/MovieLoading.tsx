@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 /**
  * Componente MovieLoading
- * 
+ *
  * @component
  * @description
  * Muestra una animación de carga mientras se obtienen los datos de las películas.
@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
  * - Un spinner giratorio
  * - Una barra de progreso
  * - Un texto de carga con efecto de parpadeo
- * 
+ *
  * @returns {JSX.Element} Pantalla de carga animada
  */
 const MovieLoading = () => {
@@ -28,9 +28,9 @@ const MovieLoading = () => {
         {/* Efecto de shimmer */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-mainGrey to-inputGrey"
-          initial={{ x: '-100%' }}
-          animate={{ x: '100%' }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
         />
         {/* Spinner giratorio */}
         <div className="absolute inset-0 flex items-center justify-center">

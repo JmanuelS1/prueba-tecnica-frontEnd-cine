@@ -12,7 +12,7 @@ import Image from "next/image";
 
 /**
  * Componente Modal de Autenticación
- * 
+ *
  * @component AuthModal
  * @description
  * Modal que maneja la autenticación y registro de usuarios.
@@ -61,7 +61,7 @@ export default function AuthModal() {
   return (
     <>
       {/* Overlay del modal */}
-      <div 
+      <div
         className="fixed inset-0 bg-black bg-opacity-50 z-40"
         onClick={closeModal}
       />
@@ -69,14 +69,14 @@ export default function AuthModal() {
       {/* Contenedor principal del modal */}
       <div className="fixed inset-0 z-50 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
-          <div 
+          <div
             className="w-full max-w-4xl h-[600px] transform overflow-hidden rounded-2xl shadow-xl transition-all
                        animate-[fadeIn_0.3s_ease-out]"
           >
             <div className="flex h-full">
               {/* Sección izquierda - Formularios */}
               <div className="w-1/2 p-6 backdrop-blur-xl">
-                <button 
+                <button
                   onClick={closeModal}
                   className="flex items-center text-white hover:text-white/60 transition-colors mb-6"
                 >
@@ -88,9 +88,10 @@ export default function AuthModal() {
                   <div className="relative flex w-7/12 h-14 rounded-md bg-gray-800 mb-8 mx-auto">
                     <button
                       className={`relative flex-1 rounded-md px-4 text-sm font-medium transition-colors duration-200 focus:outline-none
-                        ${!isLoginView 
-                          ? 'text-black bg-yellow' 
-                          : 'text-gray-400 hover:text-white'
+                        ${
+                          !isLoginView
+                            ? "text-black bg-yellow"
+                            : "text-gray-400 hover:text-white"
                         }`}
                       onClick={() => setIsLoginView(false)}
                     >
@@ -98,9 +99,10 @@ export default function AuthModal() {
                     </button>
                     <button
                       className={`relative flex-1 rounded-md px-4 text-sm font-medium transition-colors duration-200 focus:outline-none
-                        ${isLoginView 
-                          ? 'text-black bg-yellow' 
-                          : 'text-gray-400 hover:text-white'
+                        ${
+                          isLoginView
+                            ? "text-black bg-yellow"
+                            : "text-gray-400 hover:text-white"
                         }`}
                       onClick={() => setIsLoginView(true)}
                     >
@@ -109,8 +111,13 @@ export default function AuthModal() {
                   </div>
 
                   <div className="relative">
-                    <div className={`transition-all duration-300 ${isLoginView ? 'block' : 'hidden'}`}>
-                      <form onSubmit={handleSubmit} className="space-y-4 justify-center items-center">
+                    <div
+                      className={`transition-all duration-300 ${isLoginView ? "block" : "hidden"}`}
+                    >
+                      <form
+                        onSubmit={handleSubmit}
+                        className="space-y-4 justify-center items-center"
+                      >
                         <div>
                           <Input
                             type="email"
@@ -137,9 +144,14 @@ export default function AuthModal() {
                         </Button>
                       </form>
                     </div>
-                    
-                    <div className={`transition-all duration-300 ${!isLoginView ? 'block' : 'hidden'}`}>
-                      <form onSubmit={handleSubmit} className="space-y-4 justify-center items-center">
+
+                    <div
+                      className={`transition-all duration-300 ${!isLoginView ? "block" : "hidden"}`}
+                    >
+                      <form
+                        onSubmit={handleSubmit}
+                        className="space-y-4 justify-center items-center"
+                      >
                         <div>
                           <Input
                             type="email"
@@ -174,19 +186,23 @@ export default function AuthModal() {
               <div className="w-1/2 bg-gray-800 p-8 flex flex-col h-full">
                 <div className="flex flex-col flex-1 justify-center items-center text-center">
                   <h3 className="text-2xl font-bold text-white mb-4">
-                    {isLoginView ? "Welcome back to" : "Welcome to"} Quickbet Movies!
+                    {isLoginView ? "Welcome back to" : "Welcome to"} Quickbet
+                    Movies!
                   </h3>
                   <div className="h-20 mb-8">
                     <p className="text-gray-300">
-                      {isLoginView 
+                      {isLoginView
                         ? "🍿 Ready to dive into the world of unlimited entertainment? Enter your credentials and let the cinematic adventure begin!"
-                        : "🎬 Ready to unlock a universe of cinematic delights? Sign up now and start your journey with us!"
-                      }
+                        : "🎬 Ready to unlock a universe of cinematic delights? Sign up now and start your journey with us!"}
                     </p>
                   </div>
                   <div className="relative w-full flex-1">
                     <Image
-                      src={isLoginView ? "/images/login-banner.png" : "/images/signup-banner.png"}
+                      src={
+                        isLoginView
+                          ? "/images/login-banner.png"
+                          : "/images/signup-banner.png"
+                      }
                       alt="Quickbet Movies"
                       fill
                       className="object-contain"

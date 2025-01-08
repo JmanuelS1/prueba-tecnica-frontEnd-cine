@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 /**
  * Interface para las propiedades del componente Hero
- * 
+ *
  * @interface HeroProps
  * @property {Object} movie - Información de la película a mostrar
  * @property {number} movie.id - ID único de la película
@@ -24,17 +24,17 @@ interface HeroProps {
     backdrop_path: string;
     overview: string;
     vote_average: number;
-  }
+  };
 }
 
 /**
  * Componente Hero para mostrar la película destacada
- * 
+ *
  * @component
  * @description
  * Muestra una sección hero con la información principal de una película,
  * incluyendo imagen de fondo, título, descripción, puntuación y botón de favoritos.
- * 
+ *
  * @param {HeroProps} props - Propiedades del componente
  * @returns {JSX.Element} Sección hero con la información de la película
  */
@@ -79,7 +79,9 @@ export default function Hero({ movie }: HeroProps) {
             <h1 className="text-4xl md:text-6xl text-start font-bold text-white">
               {movie.title}
             </h1>
-            <p className="text-base text-gray-200 font-bold">{movie.overview}</p>
+            <p className="text-base text-gray-200 font-bold">
+              {movie.overview}
+            </p>
           </div>
 
           {/* Controles y puntuación */}
@@ -93,14 +95,17 @@ export default function Hero({ movie }: HeroProps) {
             >
               <FaHeart
                 className={`w-6 h-6 ml-auto ${
-                  isFavorite(movie.id) ? 'text-[#FF3B30]' : 'text-white'
+                  isFavorite(movie.id) ? "text-[#FF3B30]" : "text-white"
                 }`}
               />
             </Button>
 
             {/* Indicador circular de puntuación */}
             <div className="relative w-16 h-16">
-              <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 36 36">
+              <svg
+                className="w-full h-full rotate-[-90deg]"
+                viewBox="0 0 36 36"
+              >
                 <circle
                   cx="18"
                   cy="18"

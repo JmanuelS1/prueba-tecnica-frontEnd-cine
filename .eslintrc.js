@@ -7,87 +7,36 @@ module.exports = {
   },
   plugins: ["@typescript-eslint/eslint-plugin", "unused-imports"],
   extends: [
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@typescript-eslint/strict",
   ],
   root: true,
   env: {
     node: true,
     jest: true,
   },
-  ignorePatterns: [".eslintrc.js", "global.d.ts", "jest.base.config.ts"],
+  ignorePatterns: [".eslintrc.js", "next.config.js", "tailwind.config.js", "postcss.config.js"],
   rules: {
+    // Imports
     "unused-imports/no-unused-imports": "error",
     "no-duplicate-imports": "error",
-    "@typescript-eslint/triple-slash-reference": "off",
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-inferrable-types": "off",
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/adjacent-overload-signatures": "error",
-    "@typescript-eslint/await-thenable": "error",
-    "@typescript-eslint/ban-ts-comment": "error",
-    "@typescript-eslint/ban-tslint-comment": "error",
-    "@typescript-eslint/class-literal-property-style": "error",
-    "@typescript-eslint/consistent-generic-constructors": "error",
-    "@typescript-eslint/consistent-indexed-object-style": "error",
-    "@typescript-eslint/consistent-type-assertions": [
-      "error",
-      {
-        assertionStyle: "as",
-      },
-    ],
-    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
-    "@typescript-eslint/consistent-type-exports": "error",
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {
-        prefer: "no-type-imports",
-      },
-    ],
-    "@typescript-eslint/explicit-function-return-type": "error",
-    "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "error",
-    "@typescript-eslint/method-signature-style": "error",
-    "@typescript-eslint/no-confusing-non-null-assertion": "error",
-    "@typescript-eslint/no-duplicate-enum-values": "error",
-    "@typescript-eslint/no-duplicate-type-constituents": "error",
-    "@typescript-eslint/no-extra-non-null-assertion": "error",
-    "@typescript-eslint/no-extraneous-class": "off",
-    "@typescript-eslint/no-for-in-array": "error",
-    "@typescript-eslint/no-import-type-side-effects": "error",
-    "@typescript-eslint/no-require-imports": "error",
-    "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
-    "@typescript-eslint/no-unnecessary-condition": "off",
-    "@typescript-eslint/no-unnecessary-type-assertion": "off",
-    "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-member-access": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/prefer-reduce-type-parameter": "error",
-    "@typescript-eslint/prefer-string-starts-ends-with": "error",
-    "@typescript-eslint/restrict-template-expressions": "off",
-    "@typescript-eslint/prefer-readonly": "error",
-    "no-return-await": "off",
-    "@typescript-eslint/return-await": "error",
-    "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/no-unbound-method": ["off", { "ignore-static": true }],
-    "@typescript-eslint/unbound-method": ["off"],
-    "@typescript-eslint/no-floating-promises": "off",
-    eqeqeq: ["error", "always"],
-    "no-console": "error",
-    "@typescript-eslint/unified-signatures": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn", // or "error"
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_",
-        caughtErrorsIgnorePattern: "^_",
-      },
-    ],
+    
+    
+    "@typescript-eslint/explicit-function-return-type": ["error", {
+      allowExpressions: true,
+      allowTypedFunctionExpressions: true,
+      allowHigherOrderFunctions: true,
+      allowDirectConstAssertionInArrowFunctions: true,
+    }],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    
+   
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -100,20 +49,8 @@ module.exports = {
         leadingUnderscore: "allow",
       },
       {
-        selector: "parameter",
-        format: ["camelCase"],
-        leadingUnderscore: "allow",
-      },
-      {
-        selector: "memberLike",
-        modifiers: ["private"],
-        format: ["camelCase", "UPPER_CASE", "snake_case"],
-        leadingUnderscore: "allow",
-      },
-      {
-        selector: "memberLike",
-        modifiers: ["public"],
-        format: ["camelCase", "UPPER_CASE", "snake_case"],
+        selector: "function",
+        format: ["camelCase", "PascalCase"],
       },
       {
         selector: "typeLike",
@@ -121,21 +58,30 @@ module.exports = {
       },
       {
         selector: "enumMember",
-        format: ["UPPER_CASE"],
-      },
-      {
-        selector: "objectLiteralMethod",
-        format: ["camelCase", "PascalCase"],
+        format: ["UPPER_CASE", "PascalCase"],
       },
       {
         selector: "objectLiteralProperty",
-        format: ["camelCase", "UPPER_CASE", "PascalCase", "snake_case"],
-        leadingUnderscore: "allow",
+        format: null, 
       },
+    ],
+
+    
+    "no-console": "warn",
+    "eqeqeq": ["error", "always"],
+    
+    
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    
+    
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
       {
-        selector: "typeProperty",
-        format: ["camelCase", "UPPER_CASE", "snake_case"],
-        leadingUnderscore: "allow",
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
       },
     ],
   },

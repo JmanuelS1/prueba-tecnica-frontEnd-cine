@@ -7,7 +7,7 @@ import { FaPlay } from "react-icons/fa";
 
 /**
  * Interface para las propiedades del TrailerModal
- * 
+ *
  * @interface TrailerModalProps
  * @property {Object | null} trailer - Objeto que contiene la información del trailer
  * @property {string} trailer.key - Identificador único del video de YouTube
@@ -18,7 +18,7 @@ interface TrailerModalProps {
 
 /**
  * Componente TrailerModal
- * 
+ *
  * @component
  * @description
  * Modal que muestra el trailer de una película.
@@ -27,7 +27,7 @@ interface TrailerModalProps {
  * - Integración con YouTube mediante iframe
  * - Diseño responsive con tamaño máximo definido
  * - Animaciones y transiciones suaves
- * 
+ *
  * @param {TrailerModalProps} props - Propiedades del componente
  * @returns {JSX.Element} Modal con el reproductor de video
  */
@@ -36,7 +36,7 @@ export function TrailerModal({ trailer }: TrailerModalProps) {
     <Dialog>
       {/* Botón para abrir el modal */}
       <DialogTrigger asChild>
-        <Button 
+        <Button
           className="w-full mt-4 bg-yellow hover:bg-yellow/80 text-[#343434]"
           disabled={!trailer}
         >

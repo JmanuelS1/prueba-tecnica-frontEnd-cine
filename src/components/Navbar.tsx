@@ -12,7 +12,7 @@ import { MdLogout } from "react-icons/md";
 
 /**
  * Componente Navbar
- * 
+ *
  * @component
  * @description
  * Barra de navegación principal de la aplicación.
@@ -21,9 +21,9 @@ import { MdLogout } from "react-icons/md";
  * - Enlaces de navegación (Popular, Favorites)
  * - Control de autenticación (Login/Logout)
  * - Modal de inicio de sesión
- * 
+ *
  * La barra se mantiene fija en la parte superior y es responsive.
- * 
+ *
  * @returns {JSX.Element} Barra de navegación con todas sus funcionalidades
  */
 export default function Navbar() {
@@ -34,7 +34,7 @@ export default function Navbar() {
    * - Función de cierre de sesión
    */
   const { isAuthenticated, toggleLoginModal, logout } = useAuth();
-  
+
   return (
     <>
       {/* Barra de navegación principal */}
@@ -55,14 +55,14 @@ export default function Navbar() {
               </Link>
               {/* Enlaces de navegación - visibles en desktop */}
               <div className="hidden md:flex items-center gap-6">
-                <Link 
-                  href="/popular" 
+                <Link
+                  href="/popular"
                   className="text-gray-200 hover:text-white transition-colors"
                 >
                   Popular
                 </Link>
-                <Link 
-                  href="/favorites" 
+                <Link
+                  href="/favorites"
                   className="text-gray-200 hover:text-white transition-colors"
                 >
                   Favorites
@@ -76,8 +76,8 @@ export default function Navbar() {
                 // Usuario autenticado: muestra icono de usuario y botón de logout
                 <div className="flex items-center gap-2">
                   <FaUserCircle className="w-6 h-6 text-yellow" />
-                  <button 
-                    onClick={logout} 
+                  <button
+                    onClick={logout}
                     className="flex items-center text-white transition-colors hover:text-greenFluorescent"
                     aria-label="Logout"
                   >

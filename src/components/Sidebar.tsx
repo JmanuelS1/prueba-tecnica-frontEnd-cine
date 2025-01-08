@@ -37,14 +37,14 @@ interface SidebarProps {
 
 /**
  * Componente Sidebar
- * 
+ *
  * @component
  * @description
  * Barra lateral que proporciona funcionalidades de búsqueda y filtrado:
  * - Búsqueda por palabras clave con sugerencias
  * - Filtrado por géneros
  * - Integración con Redux para estado global
- * 
+ *
  * @param {SidebarProps} props - Propiedades del componente
  */
 const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
@@ -114,13 +114,13 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Filtra las películas según género y búsqueda
    */
-  const filterMovies = async() => {
+  const filterMovies = async () => {
     let filtered = movies;
 
     if (selectedGenre && selectedGenre !== "All Genres") {
       filtered = filtered.filter(
         (movie) =>
-          movie.genre_ids && movie.genre_ids.includes(Number(selectedGenre))
+          movie.genre_ids && movie.genre_ids.includes(Number(selectedGenre)),
       );
     }
 
@@ -134,12 +134,12 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Manejadores de eventos
    */
-  const handleSearchMovieByKeywords = async() => {
+  const handleSearchMovieByKeywords = async () => {
     await fetchMoviesBySearch(search);
     setKeywords([]);
   };
 
-  const handleSearchMovie = async(ev) => {
+  const handleSearchMovie = async (ev) => {
     ev.preventDefault();
     await fetchMoviesBySearch(search);
   };
@@ -149,10 +149,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
       {/* Sección de búsqueda */}
       <div className="space-y-2">
         <h3 className="text-sm font-semibold text-gray-400">Search</h3>
-        <form 
-          onSubmit={handleSearchMovie}
-          className="relative"
-        >
+        <form onSubmit={handleSearchMovie} className="relative">
           <Input
             type="text"
             placeholder="Keywords..."
@@ -165,7 +162,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
           {keywords.length > 0 && (
             <ul className="absolute top-[100%] left-0 w-full z-10 text-white bg-inputGrey border border-gray-700 rounded-md shadow-lg">
               {keywords.map((keyword) => (
-                <li 
+                <li
                   key={keyword.id}
                   onClick={() => {
                     setSearch(keyword.name);

@@ -6,7 +6,7 @@ import { persist } from "zustand/middleware";
 
 /**
  * Interface que define la estructura del estado de favoritos
- * 
+ *
  * @interface FavoritesState
  * @property {any[]} favorites - Array de películas favoritas
  * @property {Function} toggleFavorite - Función para agregar/quitar favoritos
@@ -20,26 +20,26 @@ interface FavoritesState {
 
 /**
  * Hook personalizado para manejar películas favoritas
- * 
+ *
  * @hook useFavorites
  * @description
  * Proporciona un store persistente de Zustand para gestionar las películas favoritas.
- * 
+ *
  * Funcionalidades:
  * - Almacenamiento persistente en localStorage
  * - Agregar/quitar películas de favoritos
  * - Verificar si una película está en favoritos
  * - Mantiene el estado entre recargas de página
- * 
+ *
  * @example
  * const { favorites, toggleFavorite, isFavorite } = useFavorites();
- * 
+ *
  * // Agregar/quitar de favoritos
  * toggleFavorite(movie);
- * 
+ *
  * // Verificar si es favorito
  * const isMovieFavorite = isFavorite(movieId);
- * 
+ *
  * // Acceder a la lista de favoritos
  * console.log(favorites);
  */
@@ -77,6 +77,6 @@ export const useFavorites = create<FavoritesState>()(
     }),
     {
       name: "favorites-storage", // Nombre de la clave en localStorage
-    }
-  )
+    },
+  ),
 );

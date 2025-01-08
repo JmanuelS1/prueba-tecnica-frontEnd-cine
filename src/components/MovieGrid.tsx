@@ -14,7 +14,7 @@ import { BiX } from "react-icons/bi";
 
 /**
  * Interface para las propiedades del componente MovieGrid
- * 
+ *
  * @interface MovieGridProps
  * @property {string} title - Título de la sección de películas
  * @property {Movie[]} movies - Array de películas a mostrar
@@ -36,7 +36,7 @@ interface MovieGridProps {
 
 /**
  * Componente MovieGrid
- * 
+ *
  * @component
  * @description
  * Muestra una cuadrícula de películas en un carrusel con efecto coverflow.
@@ -45,7 +45,7 @@ interface MovieGridProps {
  * - Filtrar por género
  * - Limpiar filtros de búsqueda y género
  * - Navegación entre películas con efecto de carrusel
- * 
+ *
  * @param {MovieGridProps} props - Propiedades del componente
  * @returns {JSX.Element} Sección con el grid de películas
  */
@@ -99,7 +99,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
           </button>
         )}
       </div>
-          
+
       {/* Carrusel de películas */}
       <Swiper
         ref={mainSliderRef}
@@ -115,7 +115,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
           slideShadows: true,
         }}
         modules={[EffectCube]}
-        className="w-full overflow-hidden" 
+        className="w-full overflow-hidden"
         style={{ overflow: "hidden" }}
       >
         {/* Mapeo de películas */}

@@ -10,7 +10,7 @@ import { FaArrowLeft, FaHeart, FaTimes } from "react-icons/fa";
 import { CiPlay1 } from "react-icons/ci";
 import { Button } from "@/components/ui/Button";
 import { useFavorites } from "@/hooks/useFavorites";
-import { useAuth } from '@/hooks/useAuth'; 
+import { useAuth } from "@/hooks/useAuth";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
 
 /**
@@ -49,7 +49,7 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
   const router = useRouter();
   const [trailer, setTrailer] = useState<MovieVideo | null>(null);
   const [recommendations, setRecommendations] = useState<MovieDetail[]>([]);
-  const { toggleFavorite, isFavorite } = useFavorites(); 
+  const { toggleFavorite, isFavorite } = useFavorites();
   const { isAuthenticated, toggleLoginModal } = useAuth();
   const rating = Math.round(movie.vote_average * 10);
 
@@ -71,13 +71,16 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
   useEffect(() => {
     const fetchTrailer = async () => {
       try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/videos?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        );
         if (!response.ok) {
           throw new Error("Error al obtener el tráiler");
         }
         const data = await response.json();
-        const trailer = data.results.find((video: MovieVideo) =>
-          video.type === "Trailer" && video.site === "YouTube"
+        const trailer = data.results.find(
+          (video: MovieVideo) =>
+            video.type === "Trailer" && video.site === "YouTube",
         );
         setTrailer(trailer || null);
       } catch (error) {
@@ -87,7 +90,9 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
 
     const fetchRecommendations = async () => {
       try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/recommendations?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movie.id}/recommendations?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        );
         if (!response.ok) {
           throw new Error("Error al obtener las recomendaciones");
         }
@@ -110,7 +115,10 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
     }
   };
 
-  if (!movie) return <div className="text-white text-center py-10">Película no encontrada</div>;
+  if (!movie)
+    return (
+      <div className="text-white text-center py-10">Película no encontrada</div>
+    );
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -150,11 +158,12 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
                 />
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button 
+                    <Button
                       className="w-[290px] mt-4 bg-yellow hover:bg-yellow/80 text-trailerGrey"
                       disabled={!trailer}
                     >
-                       Official Trailer <CiPlay1 className="ml-2 text-trailerGrey"  /> 
+                      Official Trailer{" "}
+                      <CiPlay1 className="ml-2 text-trailerGrey" />
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-3xl">
@@ -172,7 +181,13 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
                     )}
                     <Button
                       className="absolute top-2 right-2 bg-transparent hover:bg-white/10 text-white"
-                      onClick={() => document.querySelector<HTMLButtonElement>('[data-state="open"]')?.click()}
+                      onClick={() =>
+                        document
+                          .querySelector<HTMLButtonElement>(
+                            '[data-state="open"]',
+                          )
+                          ?.click()
+                      }
                     >
                       <FaTimes className="w-6 h-6" />
                     </Button>
@@ -199,14 +214,19 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
 
                 <div className="max-w-[90%]">
                   <h3 className="text-xl font-semibold mb-2">Overview:</h3>
-                  <p className="text-gray-300 leading-relaxed mb-4">"{movie.overview}"</p>
+                  <p className="text-gray-300 leading-relaxed mb-4">
+                    "{movie.overview}"
+                  </p>
 
                   <div className="flex flex-col items-center gap-4">
                     <div className="w-full flex justify-between items-center">
                       <div className="flex items-center">
                         {/* Círculo de Calificación */}
                         <div className="relative w-16 h-16 mr-4">
-                          <svg className="w-full h-full rotate-[-90deg]" viewBox="0 0 36 36">
+                          <svg
+                            className="w-full h-full rotate-[-90deg]"
+                            viewBox="0 0 36 36"
+                          >
                             <circle
                               cx="18"
                               cy="18"
@@ -271,7 +291,9 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
       {/* Recomendaciones */}
       {recommendations.length > 0 && (
         <div className="px-8 py-6 bg-mainGrey">
-          <h2 className="text-2xl font-bold mb-6 text-white">Recomendaciones</h2>
+          <h2 className="text-2xl font-bold mb-6 text-white">
+            Recomendaciones
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {recommendations.map((movie) => (
               <div

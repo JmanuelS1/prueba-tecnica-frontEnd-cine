@@ -13,7 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 /**
  * Interface que define las propiedades necesarias para el componente MovieCard
- * 
+ *
  * @interface MovieCardProps
  * @property {Object} movie - Objeto que contiene la información de la película
  * @property {number} movie.id - ID único de la película
@@ -34,18 +34,18 @@ interface MovieCardProps {
 
 /**
  * Componente MovieCard
- * 
+ *
  * @component
  * @description
  * Tarjeta que muestra la información principal de una película,
  * incluyendo su poster, título, fecha de lanzamiento, rating y
  * la posibilidad de marcarla como favorita.
- * 
+ *
  * @param {MovieCardProps} props - Propiedades del componente
  */
 export default function MovieCard({ movie }: MovieCardProps) {
   const { toggleFavorite, isFavorite } = useFavorites();
-  const { isAuthenticated, toggleLoginModal } = useAuth()
+  const { isAuthenticated, toggleLoginModal } = useAuth();
 
   // Cálculos y formateo de datos
   const rating = Math.round(movie.vote_average * 10);
@@ -58,13 +58,15 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   /**
    * Determina los colores del indicador de rating basado en el puntaje
-   * 
+   *
    * @param {number} rating - Puntuación de la película (0-100)
    * @returns {Object} Objeto con las clases CSS para los colores principal y de fondo
    */
   const getRatingColor = (rating: number) => {
-    if (rating > 60) return { main: "stroke-green100", bg: "stroke-green100/30" };
-    if (rating > 40) return { main: "stroke-yellow100", bg: "stroke-yellow100/30" };
+    if (rating > 60)
+      return { main: "stroke-green100", bg: "stroke-green100/30" };
+    if (rating > 40)
+      return { main: "stroke-yellow100", bg: "stroke-yellow100/30" };
     return { main: "stroke-red100", bg: "stroke-red100/30" };
   };
 
@@ -74,12 +76,12 @@ export default function MovieCard({ movie }: MovieCardProps) {
    * Maneja el toggle de favoritos verificando la autenticación
    */
   const handleToggleFavorite = () => {
-    if( isAuthenticated ) {
-      toggleFavorite(movie)
-    } else{
-      toggleLoginModal()
+    if (isAuthenticated) {
+      toggleFavorite(movie);
+    } else {
+      toggleLoginModal();
     }
-  }
+  };
 
   return (
     <div className="group relative bg-gray-900 rounded-lg overflow-hidden h-full">
@@ -148,7 +150,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
                 <FaHeart
                   className={cn(
                     "w-8 h-8",
-                    isFavorite(movie.id) ? "text-[#FF3B30]" : "text-gray-400"
+                    isFavorite(movie.id) ? "text-[#FF3B30]" : "text-gray-400",
                   )}
                 />
               </Button>

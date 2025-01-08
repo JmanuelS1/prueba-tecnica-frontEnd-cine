@@ -5,7 +5,7 @@ import { create } from "zustand";
 
 /**
  * Interface que define la estructura del estado de autenticación
- * 
+ *
  * @interface AuthState
  * @property {boolean} isAuthenticated - Indica si el usuario está autenticado
  * @property {boolean} isOpen - Controla la visibilidad del modal de login
@@ -25,30 +25,30 @@ interface AuthState {
 
 /**
  * Hook personalizado para manejar la autenticación
- * 
+ *
  * @hook useAuth
  * @description
  * Proporciona un store de Zustand para gestionar el estado de autenticación y sus operaciones.
- * 
+ *
  * Funcionalidades:
  * - Control del estado de autenticación
  * - Manejo del modal de login
  * - Autenticación simulada con credenciales predefinidas
  * - Cierre de sesión
- * 
+ *
  * Credenciales de prueba:
  * - Email: test@gmail.com
  * - Password: pass
- * 
+ *
  * @example
  * const { isAuthenticated, login, logout, toggleLoginModal } = useAuth();
- * 
+ *
  * // Abrir/cerrar modal
  * toggleLoginModal();
- * 
+ *
  * // Iniciar sesión
  * await login({ email: 'test@gmail.com', password: 'pass' });
- * 
+ *
  * // Cerrar sesión
  * logout();
  */
@@ -59,7 +59,10 @@ export const useAuth = create<AuthState>((set) => ({
   closeModal: () => set({ isOpen: false }),
   login: async (credentials) => {
     // Simulación de autenticación
-    if (credentials.email === "test@gmail.com" && credentials.password === "pass") {
+    if (
+      credentials.email === "test@gmail.com" &&
+      credentials.password === "pass"
+    ) {
       set({ isAuthenticated: true, isOpen: false });
     } else {
       alert("Credenciales incorrectas");
