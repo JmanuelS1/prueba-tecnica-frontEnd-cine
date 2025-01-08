@@ -13,24 +13,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiX } from "react-icons/bi";
 
 /**
+ * Interface para el estado de Redux
+ */
+interface RootState {
+  search: {
+    search: Movie[];
+  };
+}
+
+/**
  * Interface para las propiedades del componente MovieGrid
  *
  * @interface MovieGridProps
  * @property {string} title - Título de la sección de películas
  * @property {Movie[]} movies - Array de películas a mostrar
- * @property {Object} genre - Información del género seleccionado (opcional)
- * @property {Object} genre.genre - Objeto con información del género
- * @property {number} genre.genre.id - ID del género
- * @property {string} genre.genre.name - Nombre del género
+ * @property {Object} genre - Información del género seleccionado
  */
 interface MovieGridProps {
   title: string;
   movies: Movie[];
-  genre?: {
-    genre: {
-      id: number;
-      name: string;
-    };
+  genre: {
+    id: number;
+    name: string;
   };
 }
 
@@ -49,13 +53,13 @@ interface MovieGridProps {
  * @param {MovieGridProps} props - Propiedades del componente
  * @returns {JSX.Element} Sección con el grid de películas
  */
-export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
+export default function MovieGrid({ title, movies, genre }: MovieGridProps): JSX.Element {
   /**
    * Referencias y estados
    */
   const mainSliderRef = useRef(null);
   const dispatch = useDispatch();
-  const search = useSelector((state: any) => state.search);
+  const search = useSelector((state: RootState) => state.search);
 
   return (
     <section>
@@ -66,11 +70,11 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
       <div className="flex items-center gap-4 mb-6">
         {/* Nombre del género seleccionado */}
         <h3 className="text-3xl font-semibold text-gray-300">
-          {genre?.genre?.name || null}
+          {genre.name}
         </h3>
 
         {/* Botón para limpiar filtro de género */}
-        {genre?.genre?.name && (
+        {genre.name && (
           <button
             onClick={() => {
               dispatch({ type: "SET_GENRE", payload: null });

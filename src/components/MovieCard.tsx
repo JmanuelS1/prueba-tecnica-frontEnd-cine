@@ -10,26 +10,16 @@ import { Button } from "./ui/Button";
 import { useFavorites } from "@/hooks/useFavorites";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
+import { type Movie } from "@/types/Movie";
 
 /**
  * Interface que define las propiedades necesarias para el componente MovieCard
  *
  * @interface MovieCardProps
- * @property {Object} movie - Objeto que contiene la información de la película
- * @property {number} movie.id - ID único de la película
- * @property {string} movie.title - Título de la película
- * @property {string} movie.poster_path - Ruta de la imagen del poster
- * @property {number} movie.vote_average - Puntuación promedio (0-10)
- * @property {string} movie.release_date - Fecha de lanzamiento
+ * @property {Movie} movie - Objeto que contiene la información de la película
  */
 interface MovieCardProps {
-  movie: {
-    id: number;
-    title: string;
-    poster_path: string;
-    vote_average: number;
-    release_date: string;
-  };
+  movie: Movie;
 }
 
 /**
@@ -42,8 +32,9 @@ interface MovieCardProps {
  * la posibilidad de marcarla como favorita.
  *
  * @param {MovieCardProps} props - Propiedades del componente
+ * @returns {JSX.Element} Componente MovieCard renderizado
  */
-export default function MovieCard({ movie }: MovieCardProps) {
+export default function MovieCard({ movie }: MovieCardProps): JSX.Element {
   const { toggleFavorite, isFavorite } = useFavorites();
   const { isAuthenticated, toggleLoginModal } = useAuth();
 
@@ -60,9 +51,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
    * Determina los colores del indicador de rating basado en el puntaje
    *
    * @param {number} rating - Puntuación de la película (0-100)
-   * @returns {Object} Objeto con las clases CSS para los colores principal y de fondo
+   * @returns {{ main: string; bg: string }} Objeto con las clases CSS para los colores principal y de fondo
    */
-  const getRatingColor = (rating: number) => {
+  const getRatingColor = (rating: number): { main: string; bg: string } => {
     if (rating > 60)
       return { main: "stroke-green100", bg: "stroke-green100/30" };
     if (rating > 40)
@@ -74,8 +65,9 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   /**
    * Maneja el toggle de favoritos verificando la autenticación
+   * @returns {void}
    */
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (): void => {
     if (isAuthenticated) {
       toggleFavorite(movie);
     } else {
@@ -144,7 +136,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleToggleFavorite()}
+                onClick={handleToggleFavorite}
                 className="h-12 w-12 rounded-full hover:bg-white/10 flex items-center justify-center"
               >
                 <FaHeart

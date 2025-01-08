@@ -12,22 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useAuth } from "@/hooks/useAuth";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
-
-/**
- * Interface para los detalles de una película
- */
-interface MovieDetail {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
-  vote_average: number;
-  runtime: number;
-  genres: Array<{ id: number; name: string }>;
-  tagline: string;
-}
+import { type MovieDetail as MovieDetailType } from "@/types/Movie";
 
 /**
  * Interface para los videos de una película
@@ -42,24 +27,40 @@ interface MovieVideo {
  * Interface para las propiedades del componente MovieDetails
  */
 interface MovieDetailsProps {
-  movie: MovieDetail;
+  movie: MovieDetailType;
 }
 
-export default function MovieDetails({ movie }: MovieDetailsProps) {
+/**
+ * Componente MovieDetails
+ * @component
+ * @param {MovieDetailsProps} props - Propiedades del componente
+ * @returns {JSX.Element} Componente MovieDetails renderizado
+ */
+export default function MovieDetails({ movie }: MovieDetailsProps): JSX.Element {
   const router = useRouter();
   const [trailer, setTrailer] = useState<MovieVideo | null>(null);
-  const [recommendations, setRecommendations] = useState<MovieDetail[]>([]);
+  const [recommendations, setRecommendations] = useState<MovieDetailType[]>([]);
   const { toggleFavorite, isFavorite } = useFavorites();
   const { isAuthenticated, toggleLoginModal } = useAuth();
   const rating = Math.round(movie.vote_average * 10);
 
-  const formatRuntime = (minutes: number) => {
+  /**
+   * Formatea el tiempo de duración de la película
+   * @param {number} minutes - Duración en minutos
+   * @returns {string} Duración formateada
+   */
+  const formatRuntime = (minutes: number): string => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours}h ${mins}min`;
   };
 
-  const formatDate = (date: string) => {
+  /**
+   * Formatea la fecha al formato deseado
+   * @param {string} date - Fecha en formato ISO
+   * @returns {string} Fecha formateada
+   */
+  const formatDate = (date: string): string => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
@@ -69,7 +70,10 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
   };
 
   useEffect(() => {
-    const fetchTrailer = async () => {
+    /**
+     * Obtiene el trailer de la película
+     */
+    const fetchTrailer = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movie.id}/videos?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
@@ -88,7 +92,10 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
       }
     };
 
-    const fetchRecommendations = async () => {
+    /**
+     * Obtiene las películas recomendadas
+     */
+    const fetchRecommendations = async (): Promise<void> => {
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movie.id}/recommendations?language=es-ES&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
@@ -107,7 +114,10 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
     fetchRecommendations();
   }, [movie.id]);
 
-  const handleToggleFavorite = () => {
+  /**
+   * Maneja el toggle de favoritos
+   */
+  const handleToggleFavorite = (): void => {
     if (isAuthenticated) {
       toggleFavorite(movie);
     } else {
@@ -115,10 +125,11 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
     }
   };
 
-  if (!movie)
+  if (!movie) {
     return (
       <div className="text-white text-center py-10">Película no encontrada</div>
     );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -264,7 +275,9 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
                         onClick={handleToggleFavorite}
                       >
                         <FaHeart
-                          className={`w-8 h-8 ${isFavorite(movie.id) ? "text-[#FF3B30]" : "text-gray-400"}`}
+                          className={`w-8 h-8 ${
+                            isFavorite(movie.id) ? "text-[#FF3B30]" : "text-gray-400"
+                          }`}
                         />
                       </Button>
                     </div>

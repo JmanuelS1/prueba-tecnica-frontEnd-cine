@@ -10,8 +10,30 @@ import Hero from "@/components/Hero";
 import MovieGrid from "@/components/MovieGrid";
 import LoginModal from "@/components/LoginModal";
 import MovieLoading from "@/components/MovieLoading";
-import { Movie } from "@/types/Movie";
+import { type Movie } from "@/types/Movie";
 import { useSelector } from "react-redux";
+
+/**
+ * Interface para el estado de Redux
+ */
+interface RootState {
+  genre: {
+    genre: {
+      id: number;
+      name: string;
+    } | null;
+  };
+  search: {
+    search: Movie[];
+  };
+}
+
+/**
+ * Interface para la respuesta de la API
+ */
+interface ApiResponse {
+  results: Movie[];
+}
 
 /**
  * Configuración de las URLs de la API
@@ -35,9 +57,9 @@ const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US
  * @async
  * @function fetchData
  * @param {string} url - URL del endpoint a consultar
- * @returns {Promise<{results: Movie[]} | null>} Resultado de la petición o null en caso de error
+ * @returns {Promise<ApiResponse | null>} Resultado de la petición o null en caso de error
  */
-async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
+async function fetchData(url: string): Promise<ApiResponse | null> {
   const options = {
     method: "GET",
     headers: {
@@ -77,24 +99,24 @@ async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
  *
  * @returns {JSX.Element} Página principal de la aplicación
  */
-export default function Home() {
+export default function Home(): JSX.Element {
   // Estados para almacenar los diferentes tipos de películas
   const [dataNowPlaying, setDataNowPlaying] = useState<Movie[]>([]);
   const [dataPopular, setDataPopular] = useState<Movie[]>([]);
   const [dataUpComing, setDataUpComing] = useState<Movie[]>([]);
   const [dataTopRated, setDataTopRated] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Selectores de Redux para género y búsqueda
-  const genre = useSelector((state: any) => state.genre);
-  const search = useSelector((state: any) => state.search);
+  const genre = useSelector((state: RootState) => state.genre);
+  const search = useSelector((state: RootState) => state.search);
 
   /**
    * Effect para cargar los datos iniciales
    * Realiza todas las peticiones en paralelo usando Promise.all
    */
   useEffect(() => {
-    async function fetchDataAsync() {
+    async function fetchDataAsync(): Promise<void> {
       setIsLoading(true);
       const [nowPlaying, popular, upComing, topRated] = await Promise.all([
         fetchData(urlNowPlaying),
@@ -120,18 +142,21 @@ export default function Home() {
     ...dataUpComing,
     ...dataTopRated,
   ];
+
   const genreIdToFilter = genre?.genre?.id;
-  const filteredMovies =
+  const filteredMovies: Movie[] =
     search.search.length > 0
       ? search.search
-      : allMovies.filter(
-          (movie) =>
-            movie.genre_ids && movie.genre_ids.includes(genreIdToFilter),
-        );
+      : allMovies.filter((movie) => {
+          if (!movie.genre_ids || !genreIdToFilter) return false;
+          return movie.genre_ids.includes(genreIdToFilter);
+        });
 
   if (isLoading) {
     return <MovieLoading />;
   }
+
+  const defaultGenre = { id: 0, name: "" };
 
   return (
     <div className="min-h-screen bg-black">
@@ -147,16 +172,32 @@ export default function Home() {
             {filteredMovies.length > 0 && (
               <MovieGrid
                 title="Filtered Movies"
-                genre={genre}
+                genre={genre.genre || defaultGenre}
                 movies={filteredMovies}
               />
             )}
             {filteredMovies.length === 0 && (
               <>
-                <MovieGrid title="Popular Movies" movies={dataPopular} />
-                <MovieGrid title="Now Playing" movies={dataNowPlaying} />
-                <MovieGrid title="Coming Soon" movies={dataUpComing} />
-                <MovieGrid title="Top Rated" movies={dataTopRated} />
+                <MovieGrid 
+                  title="Popular Movies" 
+                  movies={dataPopular}
+                  genre={genre.genre || defaultGenre}
+                />
+                <MovieGrid 
+                  title="Now Playing" 
+                  movies={dataNowPlaying}
+                  genre={genre.genre || defaultGenre}
+                />
+                <MovieGrid 
+                  title="Coming Soon" 
+                  movies={dataUpComing}
+                  genre={genre.genre || defaultGenre}
+                />
+                <MovieGrid 
+                  title="Top Rated" 
+                  movies={dataTopRated}
+                  genre={genre.genre || defaultGenre}
+                />
               </>
             )}
           </div>

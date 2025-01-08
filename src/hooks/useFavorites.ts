@@ -3,18 +3,19 @@
  */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { type Movie } from "@/types/Movie";
 
 /**
  * Interface que define la estructura del estado de favoritos
  *
  * @interface FavoritesState
- * @property {any[]} favorites - Array de películas favoritas
+ * @property {Movie[]} favorites - Array de películas favoritas
  * @property {Function} toggleFavorite - Función para agregar/quitar favoritos
  * @property {Function} isFavorite - Función para verificar si una película es favorita
  */
 interface FavoritesState {
-  favorites: any[];
-  toggleFavorite: (movie: any) => void;
+  favorites: Movie[];
+  toggleFavorite: (movie: Movie) => void;
   isFavorite: (id: number) => boolean;
 }
 
@@ -53,11 +54,12 @@ export const useFavorites = create<FavoritesState>()(
 
       /**
        * Alterna el estado de favorito de una película
-       * @param {any} movie - Película a agregar/quitar de favoritos
+       * @param {Movie} movie - Película a agregar/quitar de favoritos
        */
-      toggleFavorite: (movie) => {
+      toggleFavorite: (movie: Movie): void => {
         const { favorites } = get();
         const exists = favorites.find((f) => f.id === movie.id);
+        
         if (exists) {
           set({ favorites: favorites.filter((f) => f.id !== movie.id) });
         } else {
@@ -70,7 +72,7 @@ export const useFavorites = create<FavoritesState>()(
        * @param {number} id - ID de la película a verificar
        * @returns {boolean} true si la película está en favoritos
        */
-      isFavorite: (id) => {
+      isFavorite: (id: number): boolean => {
         const { favorites } = get();
         return favorites.some((f) => f.id === id);
       },

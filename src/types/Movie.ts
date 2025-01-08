@@ -1,41 +1,6 @@
 /**
  * Interface que define la estructura de una película
- *
  * @interface Movie
- * @description
- * Representa la estructura de datos de una película en la aplicación.
- * Esta interface se utiliza para tipar los datos recibidos de la API de TMDB
- * y mantener consistencia en toda la aplicación.
- *
- * @property {number} id - Identificador único de la película
- * @property {string} title - Título de la película
- * @property {string} backdrop_path - Ruta de la imagen de fondo (formato: "/path/to/image.jpg")
- * @property {string} poster_path - Ruta del póster de la película (formato: "/path/to/poster.jpg")
- * @property {string} overview - Sinopsis o descripción de la película
- * @property {number} vote_average - Puntuación promedio (escala 0-10)
- * @property {string} release_date - Fecha de estreno (formato: "YYYY-MM-DD")
- * @property {number[]} genre_ids - Array de IDs de géneros asociados a la película
- *
- * @example
- * const movie: Movie = {
- *   id: 550,
- *   title: "Fight Club",
- *   backdrop_path: "/path/to/backdrop.jpg",
- *   poster_path: "/path/to/poster.jpg",
- *   overview: "An insomniac office worker...",
- *   vote_average: 8.4,
- *   release_date: "1999-10-15",
- *   genre_ids: [18, 53, 35]
- * };
- *
- * @usage
- * // En componentes
- * const [movies, setMovies] = useState<Movie[]>([]);
- *
- * // En props
- * interface MovieCardProps {
- *   movie: Movie;
- * }
  */
 export interface Movie {
   id: number;
@@ -46,4 +11,97 @@ export interface Movie {
   vote_average: number;
   release_date: string;
   genre_ids: number[];
+}
+
+/**
+ * Interface que extiende Movie para incluir detalles adicionales
+ * @interface MovieDetail
+ * @extends {Movie}
+ * @description
+ * Contiene toda la información de Movie más campos adicionales
+ * específicos para la vista detallada de una película
+ */
+export interface MovieDetail extends Omit<Movie, 'genre_ids'> {
+  genres: Genre[];
+  runtime: number;
+  tagline: string;
+  status: string;
+  budget: number;
+  revenue: number;
+  vote_count: number;
+}
+
+/**
+ * Interface que define la estructura de un género
+ * @interface Genre
+ * @description
+ * Representa un género cinematográfico
+ */
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+/**
+ * Interface que define la estructura de un video relacionado
+ * @interface MovieVideo
+ * @description
+ * Representa videos asociados a una película (trailers, teasers, etc.)
+ */
+export interface MovieVideo {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+}
+
+/**
+ * Interface que define la estructura de una palabra clave
+ * @interface Keyword
+ * @description
+ * Representa keywords/tags asociados a una película
+ */
+export interface Keyword {
+  id: number;
+  name: string;
+}
+
+/**
+ * Interface que define la estructura de respuesta de la API
+ * @interface ApiResponse
+ * @description
+ * Estructura genérica para las respuestas paginadas de la API
+ */
+export interface ApiResponse<T> {
+  page: number;
+  results: T[];
+  total_pages: number;
+  total_results: number;
+}
+
+/**
+ * Interface para los parámetros de búsqueda
+ * @interface SearchParams
+ * @description
+ * Parámetros utilizados para filtrar películas
+ */
+export interface SearchParams {
+  genre?: string;
+  search?: string;
+  page?: number;
+}
+
+/**
+ * Interface para el estado de carga
+ * @interface LoadingState
+ * @description
+ * Estados posibles durante la carga de datos
+ */
+export interface LoadingState {
+  isLoading: boolean;
+  error: string | null;
 }
