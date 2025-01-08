@@ -1,3 +1,6 @@
+/**
+ * Importaciones necesarias para el componente MovieGrid
+ */
 import { useRef } from "react";
 import MovieCard from "./MovieCard";
 import { Movie } from "@/types/Movie";
@@ -9,6 +12,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiX } from "react-icons/bi";
 
+/**
+ * Interface para las propiedades del componente MovieGrid
+ * 
+ * @interface MovieGridProps
+ * @property {string} title - Título de la sección de películas
+ * @property {Movie[]} movies - Array de películas a mostrar
+ * @property {Object} genre - Información del género seleccionado (opcional)
+ * @property {Object} genre.genre - Objeto con información del género
+ * @property {number} genre.genre.id - ID del género
+ * @property {string} genre.genre.name - Nombre del género
+ */
 interface MovieGridProps {
   title: string;
   movies: Movie[];
@@ -20,21 +34,42 @@ interface MovieGridProps {
   };
 }
 
+/**
+ * Componente MovieGrid
+ * 
+ * @component
+ * @description
+ * Muestra una cuadrícula de películas en un carrusel con efecto coverflow.
+ * Incluye funcionalidades para:
+ * - Mostrar título de la sección
+ * - Filtrar por género
+ * - Limpiar filtros de búsqueda y género
+ * - Navegación entre películas con efecto de carrusel
+ * 
+ * @param {MovieGridProps} props - Propiedades del componente
+ * @returns {JSX.Element} Sección con el grid de películas
+ */
 export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
+  /**
+   * Referencias y estados
+   */
   const mainSliderRef = useRef(null);
   const dispatch = useDispatch();
   const search = useSelector((state: any) => state.search);
 
   return (
     <section>
+      {/* Título de la sección */}
       <h2 className="text-4xl font-extrabold text-white mb-4 leading-tight">
         {title}
       </h2>
       <div className="flex items-center gap-4 mb-6">
+        {/* Nombre del género seleccionado */}
         <h3 className="text-3xl font-semibold text-gray-300">
           {genre?.genre?.name || null}
         </h3>
 
+        {/* Botón para limpiar filtro de género */}
         {genre?.genre?.name && (
           <button
             onClick={() => {
@@ -49,6 +84,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
           </button>
         )}
 
+        {/* Botón para limpiar búsqueda */}
         {search.search.length > 0 && (
           <button
             onClick={() => {
@@ -64,7 +100,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
         )}
       </div>
           
-
+      {/* Carrusel de películas */}
       <Swiper
         ref={mainSliderRef}
         effect={"coverflow"}
@@ -79,8 +115,10 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
           slideShadows: true,
         }}
         modules={[EffectCube]}
-        className="w-full"
+        className="w-full overflow-hidden" 
+        style={{ overflow: 'hidden' }}
       >
+        {/* Mapeo de películas */}
         {movies.map((movie) => (
           <SwiperSlide
             key={movie.id}
@@ -93,53 +131,3 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps) {
     </section>
   );
 }
-
-
-/*import { useRef } from 'react';
-import MovieCard from './MovieCard';
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/navigation";
-import { EffectCube } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-interface MovieGridProps {
-  title: string
-  movies: any[]
-}
-
-export default function MovieGrid({ title, movies }: MovieGridProps) {
-  const mainSliderRef = useRef(null);
-
-  return (
-    <section>
-      <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
-      <Swiper
-        ref={mainSliderRef}
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={"auto"}
-        loop={true}
-        coverflowEffect={{
-          stretch: 0,
-          depth: 0,
-          modifier: 1,
-          slideShadows: true
-        }}
-        modules={[EffectCube]}
-        className="w-full"
-      >
-        {movies.map((movie) => (
-          <SwiperSlide
-            key={movie.id}
-            className="relative rounded-3xl p-2 !w-[300px] md:!w-[300px] !mx-2 cursor-pointer"
-          >
-            <MovieCard movie={movie} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
-  )
-}
-*/

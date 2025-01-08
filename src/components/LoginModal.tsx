@@ -1,5 +1,8 @@
 "use client"
 
+/**
+ * Importaciones necesarias para el componente de autenticación
+ */
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { IoArrowBack } from "react-icons/io5"
@@ -7,10 +10,22 @@ import { Button } from './ui/Button'
 import { Input } from './ui/Input'
 import Image from 'next/image'
 
+/**
+ * Componente Modal de Autenticación
+ * 
+ * @component AuthModal
+ * @description
+ * Modal que maneja la autenticación y registro de usuarios.
+ * Proporciona una interfaz dual que alterna entre inicio de sesión y registro.
+ * Incluye validación de formularios y gestión de estado de autenticación.
+ */
 export default function AuthModal() {
   const { isOpen, closeModal, login } = useAuth()
   const [isLoginView, setIsLoginView] = useState(false)
 
+  /**
+   * Efecto para controlar el scroll del body cuando el modal está abierto
+   */
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -22,6 +37,10 @@ export default function AuthModal() {
     }
   }, [isOpen])
 
+  /**
+   * Maneja el envío de los formularios de login y registro
+   * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -33,7 +52,6 @@ export default function AuthModal() {
     if (isLoginView) {
       await login(data)
     } else {
-      // Solo mostrar un console.log para el registro
       console.log('Register functionality is not implemented', data)
     }
   }
@@ -42,13 +60,13 @@ export default function AuthModal() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay del modal */}
       <div 
         className="fixed inset-0 bg-black bg-opacity-50 z-40"
         onClick={closeModal}
       />
 
-      {/* Modal */}
+      {/* Contenedor principal del modal */}
       <div className="fixed inset-0 z-50 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
           <div 
@@ -56,7 +74,7 @@ export default function AuthModal() {
                        animate-[fadeIn_0.3s_ease-out]"
           >
             <div className="flex h-full">
-              {/* Left Section */}
+              {/* Sección izquierda - Formularios */}
               <div className="w-1/2 p-6 backdrop-blur-xl">
                 <button 
                   onClick={closeModal}
@@ -152,7 +170,7 @@ export default function AuthModal() {
                 </div>
               </div>
 
-              {/* Right Section */}
+              {/* Sección derecha - Contenido informativo */}
               <div className="w-1/2 bg-gray-800 p-8 flex flex-col h-full">
                 <div className="flex flex-col flex-1 justify-center items-center text-center">
                   <h3 className="text-2xl font-bold text-white mb-4">
