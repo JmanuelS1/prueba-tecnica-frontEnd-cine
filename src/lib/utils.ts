@@ -1,8 +1,8 @@
 /**
  * Importaciones necesarias para la utilidad de clases CSS
  */
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 /**
  * Utilidad para combinar clases CSS de manera eficiente
@@ -32,5 +32,5 @@ import { twMerge } from "tailwind-merge"
  * cn('px-2 py-1', 'p-4'); // Resolverá el conflicto de padding
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }

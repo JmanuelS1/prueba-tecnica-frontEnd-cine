@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { FaHeart } from 'react-icons/fa'
-import { useFavorites } from '@/hooks/useFavorites'
-import { Button } from './ui/Button'
-import { useAuth } from '@/hooks/useAuth'
+import Image from 'next/image';
+import { FaHeart } from 'react-icons/fa';
+import { useFavorites } from '@/hooks/useFavorites';
+import { Button } from './ui/Button';
+import { useAuth } from '@/hooks/useAuth';
 
 /**
  * Interface para las propiedades del componente Hero
@@ -19,11 +19,11 @@ import { useAuth } from '@/hooks/useAuth'
  */
 interface HeroProps {
   movie: {
-    id: number
-    title: string
-    backdrop_path: string
-    overview: string
-    vote_average: number
+    id: number;
+    title: string;
+    backdrop_path: string;
+    overview: string;
+    vote_average: number;
   }
 }
 
@@ -39,9 +39,9 @@ interface HeroProps {
  * @returns {JSX.Element} Sección hero con la información de la película
  */
 export default function Hero({ movie }: HeroProps) {
-  const { toggleFavorite, isFavorite } = useFavorites()
-  const { isAuthenticated, toggleLoginModal } = useAuth()
-  const rating = Math.round(movie.vote_average * 10)
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const { isAuthenticated, toggleLoginModal } = useAuth();
+  const rating = Math.round(movie.vote_average * 10);
 
   /**
    * Maneja el toggle de favoritos
@@ -50,11 +50,11 @@ export default function Hero({ movie }: HeroProps) {
    */
   const handleToggleFavorite = () => {
     if (isAuthenticated) {
-      toggleFavorite(movie)
+      toggleFavorite(movie);
     } else {
-      toggleLoginModal()
+      toggleLoginModal();
     }
-  }
+  };
 
   return (
     <div className="relative h-[70vh] w-full">
@@ -128,5 +128,5 @@ export default function Hero({ movie }: HeroProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

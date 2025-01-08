@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 /**
  * Importaciones necesarias para el componente de carga
  */
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 /**
  * Componente MovieLoading
@@ -58,7 +58,7 @@ const MovieLoading = () => {
         Loading Movies...
       </motion.p>
     </div>
-  )
-}
+  );
+};
 
-export default MovieLoading
+export default MovieLoading;

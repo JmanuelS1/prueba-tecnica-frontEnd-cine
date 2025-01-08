@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 /**
  * Importaciones necesarias para el layout principal
@@ -11,7 +11,7 @@ import { Inter } from "next/font/google";
 import "./global.css";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/Navbar';
 
 /**
  * Configuración de la fuente Inter de Google

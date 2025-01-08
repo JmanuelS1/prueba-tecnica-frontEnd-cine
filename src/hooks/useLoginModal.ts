@@ -1,7 +1,7 @@
 /**
  * Importación de Zustand para manejo de estado global
  */
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 /**
  * Interface que define la estructura del estado del modal de login
@@ -12,9 +12,9 @@ import { create } from 'zustand'
  * @property {Function} onClose - Función para cerrar el modal
  */
 interface LoginModalStore {
-  isOpen: boolean
-  onOpen: () => void
-  onClose: () => void
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 /**
@@ -48,4 +48,4 @@ export const useLoginModal = create<LoginModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
-}))
+}));

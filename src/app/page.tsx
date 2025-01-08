@@ -1,33 +1,33 @@
-'use client'
+'use client';
 
 /**
  * Importaciones necesarias para la página principal
  */
-import React, { useState, useEffect } from 'react'
-import Navbar from '@/components/Navbar'
-import Sidebar from '@/components/Sidebar'
-import Hero from '@/components/Hero'
-import MovieGrid from '@/components/MovieGrid'
-import LoginModal from '@/components/LoginModal'
-import MovieLoading from '@/components/MovieLoading'
-import { Movie } from '@/types/Movie'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
+import Hero from '@/components/Hero';
+import MovieGrid from '@/components/MovieGrid';
+import LoginModal from '@/components/LoginModal';
+import MovieLoading from '@/components/MovieLoading';
+import { Movie } from '@/types/Movie';
+import { useSelector } from 'react-redux';
 
 /**
  * Configuración de las URLs de la API
  * @constant {string} apiKey - Clave de la API de TMDB
  * @constant {string} token - Token de autenticación
  */
-const apiKey = process.env.NEXT_PUBLIC_API_KEY
-const token = process.env.NEXT_PUBLIC_TOKEN
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const token = process.env.NEXT_PUBLIC_TOKEN;
 
 /**
  * URLs para diferentes endpoints de la API de TMDB
  */
-const urlNowPlaying = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${apiKey}`
-const urlPopular = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`
-const urlUpComing = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=${apiKey}`
-const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${apiKey}`
+const urlNowPlaying = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${apiKey}`;
+const urlPopular = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`;
+const urlUpComing = `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=${apiKey}`;
+const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${apiKey}`;
 
 /**
  * Función para realizar peticiones a la API de TMDB
@@ -44,18 +44,18 @@ async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
       accept: 'application/json',
       Authorization: `Bearer ${token}`,
     },
-  }
+  };
 
   try {
-    const response = await fetch(url, options)
+    const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`)
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    const data = await response.json()
-    return data
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error('Error al realizar la petición:', error)
-    return null
+    console.error('Error al realizar la petición:', error);
+    return null;
   }
 }
 
@@ -79,15 +79,15 @@ async function fetchData(url: string): Promise<{ results: Movie[] } | null> {
  */
 export default function Home() {
   // Estados para almacenar los diferentes tipos de películas
-  const [dataNowPlaying, setDataNowPlaying] = useState<Movie[]>([])
-  const [dataPopular, setDataPopular] = useState<Movie[]>([])
-  const [dataUpComing, setDataUpComing] = useState<Movie[]>([])
-  const [dataTopRated, setDataTopRated] = useState<Movie[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [dataNowPlaying, setDataNowPlaying] = useState<Movie[]>([]);
+  const [dataPopular, setDataPopular] = useState<Movie[]>([]);
+  const [dataUpComing, setDataUpComing] = useState<Movie[]>([]);
+  const [dataTopRated, setDataTopRated] = useState<Movie[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Selectores de Redux para género y búsqueda
-  const genre = useSelector((state: any) => state.genre)
-  const search = useSelector((state: any) => state.search)
+  const genre = useSelector((state: any) => state.genre);
+  const search = useSelector((state: any) => state.search);
 
   /**
    * Effect para cargar los datos iniciales
@@ -95,33 +95,33 @@ export default function Home() {
    */
   useEffect(() => {
     async function fetchDataAsync() {
-      setIsLoading(true)
+      setIsLoading(true);
       const [nowPlaying, popular, upComing, topRated] = await Promise.all([
         fetchData(urlNowPlaying),
         fetchData(urlPopular),
         fetchData(urlUpComing),
         fetchData(urlTopRated),
-      ])
+      ]);
 
-      setDataNowPlaying(nowPlaying?.results || [])
-      setDataPopular(popular?.results || [])
-      setDataUpComing(upComing?.results || [])
-      setDataTopRated(topRated?.results || [])
-      setIsLoading(false)
+      setDataNowPlaying(nowPlaying?.results || []);
+      setDataPopular(popular?.results || []);
+      setDataUpComing(upComing?.results || []);
+      setDataTopRated(topRated?.results || []);
+      setIsLoading(false);
     }
 
-    fetchDataAsync()
-  }, [])
+    fetchDataAsync();
+  }, []);
 
   // Lógica de filtrado de películas
-  const allMovies = [...dataNowPlaying, ...dataPopular, ...dataUpComing, ...dataTopRated]
-  const genreIdToFilter = genre?.genre?.id
+  const allMovies = [...dataNowPlaying, ...dataPopular, ...dataUpComing, ...dataTopRated];
+  const genreIdToFilter = genre?.genre?.id;
   const filteredMovies = search.search.length > 0
     ? search.search
-    : allMovies.filter((movie) => movie.genre_ids && movie.genre_ids.includes(genreIdToFilter))
+    : allMovies.filter((movie) => movie.genre_ids && movie.genre_ids.includes(genreIdToFilter));
 
   if (isLoading) {
-    return <MovieLoading />
+    return <MovieLoading />;
   }
 
   return (
@@ -150,5 +150,5 @@ export default function Home() {
         </main>
       </div>
     </div>
-  )
+  );
 }

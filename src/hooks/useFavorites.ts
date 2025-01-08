@@ -1,8 +1,8 @@
 /**
  * Importaciones necesarias para el store de favoritos
  */
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 /**
  * Interface que define la estructura del estado de favoritos
@@ -13,9 +13,9 @@ import { persist } from 'zustand/middleware'
  * @property {Function} isFavorite - Función para verificar si una película es favorita
  */
 interface FavoritesState {
-  favorites: any[]
-  toggleFavorite: (movie: any) => void
-  isFavorite: (id: number) => boolean
+  favorites: any[];
+  toggleFavorite: (movie: any) => void;
+  isFavorite: (id: number) => boolean;
 }
 
 /**
@@ -56,12 +56,12 @@ export const useFavorites = create<FavoritesState>()(
        * @param {any} movie - Película a agregar/quitar de favoritos
        */
       toggleFavorite: (movie) => {
-        const { favorites } = get()
-        const exists = favorites.find((f) => f.id === movie.id)
+        const { favorites } = get();
+        const exists = favorites.find((f) => f.id === movie.id);
         if (exists) {
-          set({ favorites: favorites.filter((f) => f.id !== movie.id) })
+          set({ favorites: favorites.filter((f) => f.id !== movie.id) });
         } else {
-          set({ favorites: [...favorites, movie] })
+          set({ favorites: [...favorites, movie] });
         }
       },
 
@@ -71,12 +71,12 @@ export const useFavorites = create<FavoritesState>()(
        * @returns {boolean} true si la película está en favoritos
        */
       isFavorite: (id) => {
-        const { favorites } = get()
-        return favorites.some((f) => f.id === id)
+        const { favorites } = get();
+        return favorites.some((f) => f.id === id);
       },
     }),
     {
       name: 'favorites-storage', // Nombre de la clave en localStorage
     }
   )
-)
+);

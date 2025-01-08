@@ -15,18 +15,6 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/Dialog";
 
 /**
  * Interface para los detalles de una película
- * 
- * @interface MovieDetail
- * @property {number} id - ID único de la película
- * @property {string} title - Título de la película
- * @property {string} overview - Descripción de la película
- * @property {string} poster_path - Ruta de la imagen del poster
- * @property {string} backdrop_path - Ruta de la imagen de fondo
- * @property {string} release_date - Fecha de lanzamiento
- * @property {number} vote_average - Puntuación promedio
- * @property {number} runtime - Duración en minutos
- * @property {Array<{id: number, name: string}>} genres - Géneros de la película
- * @property {string} tagline - Eslogan de la película
  */
 interface MovieDetail {
   id: number;
@@ -43,11 +31,6 @@ interface MovieDetail {
 
 /**
  * Interface para los videos de una película
- * 
- * @interface MovieVideo
- * @property {string} key - Identificador del video
- * @property {string} site - Plataforma del video (e.g., YouTube)
- * @property {string} type - Tipo de video (e.g., Trailer)
  */
 interface MovieVideo {
   key: string;
@@ -62,20 +45,6 @@ interface MovieDetailsProps {
   movie: MovieDetail;
 }
 
-/**
- * Componente MovieDetails
- * 
- * @component
- * @description
- * Muestra los detalles completos de una película, incluyendo:
- * - Imagen de fondo y poster
- * - Información básica (título, fecha, duración)
- * - Descripción y eslogan
- * - Puntuación de usuarios
- * - Trailer (si está disponible)
- * - Géneros
- * - Películas recomendadas
- */
 export default function MovieDetails({ movie }: MovieDetailsProps) {
   const router = useRouter();
   const [trailer, setTrailer] = useState<MovieVideo | null>(null);
@@ -84,18 +53,12 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
   const { isAuthenticated, toggleLoginModal } = useAuth();
   const rating = Math.round(movie.vote_average * 10);
 
-  /**
-   * Formatea la duración de la película a formato horas y minutos
-   */
   const formatRuntime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours}h ${mins}min`;
   };
 
-  /**
-   * Formatea la fecha a un formato legible
-   */
   const formatDate = (date: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -105,9 +68,6 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
     return new Date(date).toLocaleDateString('en-US', options);
   };
 
-  /**
-   * Effect para cargar el trailer y las recomendaciones
-   */
   useEffect(() => {
     const fetchTrailer = async () => {
       try {
@@ -142,9 +102,6 @@ export default function MovieDetails({ movie }: MovieDetailsProps) {
     fetchRecommendations();
   }, [movie.id]);
 
-  /**
-   * Maneja el toggle de favoritos verificando la autenticación
-   */
   const handleToggleFavorite = () => {
     if (isAuthenticated) {
       toggleFavorite(movie);

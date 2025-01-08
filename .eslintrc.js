@@ -88,7 +88,6 @@ module.exports = {
         caughtErrorsIgnorePattern: "^_",
       },
     ],
-    "semi": ["error", "never"], 
     "@typescript-eslint/naming-convention": [
       "error",
       {

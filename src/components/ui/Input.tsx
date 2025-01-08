@@ -1,5 +1,5 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * Interface para las propiedades del Input
@@ -60,11 +60,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
+);
 
 // Nombre para DevTools
-Input.displayName = "Input"
+Input.displayName = "Input";
 
-export { Input }
+export { Input };

@@ -1,7 +1,7 @@
 /**
  * Importación de Zustand para manejo de estado global
  */
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 /**
  * Interface que define la estructura del estado de autenticación
@@ -15,12 +15,12 @@ import { create } from 'zustand'
  * @property {Function} logout - Cierra la sesión del usuario
  */
 interface AuthState {
-  isAuthenticated: boolean
-  isOpen: boolean
-  toggleLoginModal: () => void
-  closeModal: () => void
-  login: (credentials: { email: string; password: string }) => Promise<void>
-  logout: () => void
+  isAuthenticated: boolean;
+  isOpen: boolean;
+  toggleLoginModal: () => void;
+  closeModal: () => void;
+  login: (credentials: { email: string; password: string }) => Promise<void>;
+  logout: () => void;
 }
 
 /**
@@ -60,10 +60,10 @@ export const useAuth = create<AuthState>((set) => ({
   login: async (credentials) => {
     // Simulación de autenticación
     if (credentials.email === 'test@gmail.com' && credentials.password === 'pass') {
-      set({ isAuthenticated: true, isOpen: false })
+      set({ isAuthenticated: true, isOpen: false });
     } else {
-      alert('Credenciales incorrectas')
+      alert('Credenciales incorrectas');
     }
   },
   logout: () => set({ isAuthenticated: false }),
-}))
+}));

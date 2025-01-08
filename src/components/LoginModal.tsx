@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
 /**
  * Importaciones necesarias para el componente de autenticación
  */
-import { useAuth } from '@/hooks/useAuth'
-import { useEffect, useState } from 'react'
-import { IoArrowBack } from "react-icons/io5"
-import { Button } from './ui/Button'
-import { Input } from './ui/Input'
-import Image from 'next/image'
+import { useAuth } from '@/hooks/useAuth';
+import { useEffect, useState } from 'react';
+import { IoArrowBack } from "react-icons/io5";
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import Image from 'next/image';
 
 /**
  * Componente Modal de Autenticación
@@ -20,43 +20,43 @@ import Image from 'next/image'
  * Incluye validación de formularios y gestión de estado de autenticación.
  */
 export default function AuthModal() {
-  const { isOpen, closeModal, login } = useAuth()
-  const [isLoginView, setIsLoginView] = useState(false)
+  const { isOpen, closeModal, login } = useAuth();
+  const [isLoginView, setIsLoginView] = useState(false);
 
   /**
    * Efecto para controlar el scroll del body cuando el modal está abierto
    */
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'unset';
     }
     return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen])
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   /**
    * Maneja el envío de los formularios de login y registro
    * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     const data = {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
-    }
+    };
     
     if (isLoginView) {
-      await login(data)
+      await login(data);
     } else {
-      console.log('Register functionality is not implemented', data)
+      console.log('Register functionality is not implemented', data);
     }
-  }
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <>
@@ -198,5 +198,5 @@ export default function AuthModal() {
         </div>
       </div>
     </>
-  )
+  );
 }

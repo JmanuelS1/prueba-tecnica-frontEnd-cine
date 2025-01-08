@@ -24,6 +24,6 @@
  * const searchResults: Keyword[] = await fetchKeywords(searchTerm);
  */
 export interface Keyword {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }

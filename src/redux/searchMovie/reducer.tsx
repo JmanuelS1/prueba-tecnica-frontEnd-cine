@@ -48,4 +48,4 @@ export const searchMovieReducer = (state = initialState, action: any) => {
     default:
       return state;
    }
-}
+};

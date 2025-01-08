@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils"
-import { ButtonHTMLAttributes, forwardRef } from "react"
+import { cn } from "@/lib/utils";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 
 /**
  * Interface que extiende las propiedades HTML nativas del botón
@@ -10,8 +10,8 @@ import { ButtonHTMLAttributes, forwardRef } from "react"
  * @property {('sm' | 'md' | 'lg')} [size] - Tamaño del botón
  */
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'outline' | 'ghost'
-  size?: 'sm' | 'md' | 'lg'
+  variant?: 'default' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -61,10 +61,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 // Nombre para DevTools
-Button.displayName = "Button"
+Button.displayName = "Button";
 
-export { Button }
+export { Button };

@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   const [selectedGenre, setSelectedGenre] = useState("All Genres");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [keywords, setKeywords] = useState<Keyword[]>([])
+  const [keywords, setKeywords] = useState<Keyword[]>([]);
   const genre = useSelector((state: any) => state.genre);
 
   /**
@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Busca keywords basadas en la consulta del usuario
    */
-  const fetchKeywords = async ( query ) => {
+  const fetchKeywords = async (query) => {
     const response = await fetch(`${urlKeywords}${query}&api_key=${apiKey}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -83,12 +83,12 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
     });
     const data = await response.json();
     setKeywords(data.results);
-  }
+  };
 
   /**
    * Busca películas basadas en la consulta del usuario
    */
-  const fetchMoviesBySearch = async ( query ) => {
+  const fetchMoviesBySearch = async (query) => {
     const response = await fetch(`${urlSerchMovie}${query}&api_key=${apiKey}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -96,9 +96,9 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
     });
     const data = await response.json();
     dispatch({ type: "SET_SEARCH", payload: data.results });
-    setKeywords([])
-    setSearch("")
-  }
+    setKeywords([]);
+    setSearch("");
+  };
 
   /**
    * Effects para cargar géneros y filtrar películas
@@ -125,9 +125,9 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
     }
 
     if (search) {
-      await fetchKeywords(search)
-    }else {
-      setKeywords([])
+      await fetchKeywords(search);
+    } else {
+      setKeywords([]);
     }
   };
 
@@ -135,14 +135,14 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
    * Manejadores de eventos
    */
   const handleSearchMovieByKeywords = async() => {
-    await fetchMoviesBySearch(search)
-    setKeywords([])
-  }
+    await fetchMoviesBySearch(search);
+    setKeywords([]);
+  };
 
   const handleSearchMovie = async(ev) => {
-    ev.preventDefault()
-    await fetchMoviesBySearch(search)
-  }
+    ev.preventDefault();
+    await fetchMoviesBySearch(search);
+  };
 
   return (
     <div className="w-64 h-full bg-sideGrey p-4 space-y-6">
@@ -164,12 +164,12 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
           {/* Lista de sugerencias de keywords */}
           {keywords.length > 0 && (
             <ul className="absolute top-[100%] left-0 w-full z-10 text-white bg-inputGrey border border-gray-700 rounded-md shadow-lg">
-              {keywords.map(keyword=> (
+              {keywords.map(keyword => (
                 <li 
                   key={keyword.id}
-                  onClick={ () => {
-                    setSearch(keyword.name)
-                    handleSearchMovieByKeywords()
+                  onClick={() => {
+                    setSearch(keyword.name);
+                    handleSearchMovieByKeywords();
                   }}
                   className="py-1 cursor-pointer hover:bg-[#262626] px-3"
                 >

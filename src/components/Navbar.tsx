@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
 /**
  * Importaciones necesarias para el componente Navbar
  */
-import Image from 'next/image'
-import Link from 'next/link'
-import { FaUserCircle } from 'react-icons/fa'
-import { useAuth } from '@/hooks/useAuth'
-import LoginModal from './LoginModal'
-import { MdLogout } from 'react-icons/md'
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaUserCircle } from 'react-icons/fa';
+import { useAuth } from '@/hooks/useAuth';
+import LoginModal from './LoginModal';
+import { MdLogout } from 'react-icons/md';
 
 /**
  * Componente Navbar
@@ -33,7 +33,7 @@ export default function Navbar() {
    * - Control del modal de login
    * - Función de cierre de sesión
    */
-  const { isAuthenticated, toggleLoginModal, logout } = useAuth()
+  const { isAuthenticated, toggleLoginModal, logout } = useAuth();
   
   return (
     <>
@@ -101,5 +101,5 @@ export default function Navbar() {
       {/* Modal de inicio de sesión */}
       <LoginModal />
     </>
-  )
+  );
 }
