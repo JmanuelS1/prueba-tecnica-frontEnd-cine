@@ -29,6 +29,7 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 
 1. Clona el repositorio:
 
+git clone https://github.com/tu-usuario/frontend-challenge.git
 
 2. Navega al directorio del proyecto:
 ```bash
