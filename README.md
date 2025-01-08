@@ -13,7 +13,7 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 
 ## 🛠️ Tecnologías Utilizadas
 
-- Next.js 13
+- Next.js 14
 - TypeScript
 - Tailwind CSS
 - Zustand (Estado global)
@@ -29,7 +29,7 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 
 1. Clona el repositorio:
 
-git clone https://github.com/tu-usuario/frontend-challenge.git
+git clone https://github.com/JmanuelS1/prueba-tecnica-frontEnd-cine.git
 
 2. Navega al directorio del proyecto:
 ```bash
