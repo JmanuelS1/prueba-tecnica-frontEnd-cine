@@ -7,8 +7,7 @@ import React, { useState, useEffect } from "react";
 import { BiSearch, BiChevronDown } from "react-icons/bi";
 import { Input } from "./ui/Input";
 import { Movie } from "@/types/Movie";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Keyword } from "@/types/Keyword";
 
 /**
@@ -47,7 +46,7 @@ interface SidebarProps {
  *
  * @param {SidebarProps} props - Propiedades del componente
  */
-const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
+const Sidebar: React.FC<SidebarProps> = ({ movies }): JSX.Element => {
   /**
    * Estados y hooks
    */
@@ -62,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Obtiene la lista de géneros de la API
    */
-  const fetchGenres = async () => {
+  const fetchGenres = async (): Promise<void> => {
     const response = await fetch(urlGenres, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -75,7 +74,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Busca keywords basadas en la consulta del usuario
    */
-  const fetchKeywords = async (query) => {
+  const fetchKeywords = async (query: string): Promise<void> => {
     const response = await fetch(`${urlKeywords}${query}&api_key=${apiKey}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -88,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Busca películas basadas en la consulta del usuario
    */
-  const fetchMoviesBySearch = async (query) => {
+  const fetchMoviesBySearch = async (query: string): Promise<void> => {
     const response = await fetch(`${urlSerchMovie}${query}&api_key=${apiKey}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -114,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Filtra las películas según género y búsqueda
    */
-  const filterMovies = async () => {
+  const filterMovies = async (): Promise<void> => {
     let filtered = movies;
 
     if (selectedGenre && selectedGenre !== "All Genres") {
@@ -134,12 +133,12 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }) => {
   /**
    * Manejadores de eventos
    */
-  const handleSearchMovieByKeywords = async () => {
+  const handleSearchMovieByKeywords = async (): Promise<void> => {
     await fetchMoviesBySearch(search);
     setKeywords([]);
   };
 
-  const handleSearchMovie = async (ev) => {
+  const handleSearchMovie = async (ev: React.FormEvent<HTMLFormElement>): Promise<void> => {
     ev.preventDefault();
     await fetchMoviesBySearch(search);
   };

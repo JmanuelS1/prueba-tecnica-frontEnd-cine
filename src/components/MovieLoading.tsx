@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
  *
  * @returns {JSX.Element} Pantalla de carga animada
  */
-const MovieLoading = () => {
+const MovieLoading = (): JSX.Element => {
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
       {/* Contenedor principal de la animación */}

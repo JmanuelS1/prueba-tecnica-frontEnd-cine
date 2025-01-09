@@ -44,7 +44,7 @@ interface HeroProps {
  * @param {HeroProps} props - Propiedades del componente
  * @returns {JSX.Element} Sección hero con la información de la película
  */
-export default function Hero({ movie }: HeroProps) {
+export default function Hero({ movie }: HeroProps): JSX.Element {
   const { toggleFavorite, isFavorite } = useFavorites();
   const { isAuthenticated, toggleLoginModal } = useAuth();
   const rating = Math.round(movie.vote_average * 10);
@@ -54,7 +54,7 @@ export default function Hero({ movie }: HeroProps) {
    * Si el usuario está autenticado, alterna el estado de favorito
    * Si no está autenticado, muestra el modal de login
    */
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (): void => {
     if (isAuthenticated) {
       toggleFavorite(movie);
     } else {

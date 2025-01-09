@@ -31,6 +31,6 @@ import { twMerge } from "tailwind-merge";
  * // Con clases de Tailwind que podrían conflictuar
  * cn('px-2 py-1', 'p-4'); // Resolverá el conflicto de padding
  */
-export function cn(...inputs: ClassValue[]) {
+export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }

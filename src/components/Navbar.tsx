@@ -26,7 +26,7 @@ import { MdLogout } from "react-icons/md";
  *
  * @returns {JSX.Element} Barra de navegación con todas sus funcionalidades
  */
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
   /**
    * Hook de autenticación que proporciona:
    * - Estado de autenticación

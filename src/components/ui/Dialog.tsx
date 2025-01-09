@@ -22,7 +22,7 @@ const DialogTrigger = DialogPrimitive.Trigger;
  * @component
  * @param props - Propiedades del portal de Radix UI
  */
-const DialogPortal = ({ ...props }: DialogPrimitive.DialogPortalProps) => (
+const DialogPortal = ({ ...props }: DialogPrimitive.DialogPortalProps): JSX.Element => (
   <DialogPrimitive.Portal {...props} />
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
@@ -88,7 +88,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 const DialogHeader = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): JSX.Element => (
   <div
     className={cn(
       "flex flex-col space-y-1.5 text-center sm:text-left",
@@ -108,7 +108,7 @@ DialogHeader.displayName = "DialogHeader";
 const DialogFooter = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement>): JSX.Element => (
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",

@@ -19,7 +19,7 @@ import Image from "next/image";
  * Proporciona una interfaz dual que alterna entre inicio de sesión y registro.
  * Incluye validación de formularios y gestión de estado de autenticación.
  */
-export default function AuthModal() {
+export default function AuthModal(): JSX.Element {
   const { isOpen, closeModal, login } = useAuth();
   const [isLoginView, setIsLoginView] = useState(false);
 
@@ -41,7 +41,7 @@ export default function AuthModal() {
    * Maneja el envío de los formularios de login y registro
    * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario
    */
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -56,7 +56,7 @@ export default function AuthModal() {
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) return <></>;
 
   return (
     <>

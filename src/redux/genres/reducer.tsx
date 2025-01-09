@@ -32,7 +32,7 @@ const initialState = {
  *   payload: { id: 28, name: "Action" }
  * });
  */
-export const genreReducer = (state = initialState, action: any) => {
+export const genreReducer = (state = initialState, action: any): any => {
   switch (action.type) {
     case "SET_GENRE":
       return { ...state, genre: action.payload };

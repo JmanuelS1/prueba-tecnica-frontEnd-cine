@@ -31,7 +31,7 @@ interface TrailerModalProps {
  * @param {TrailerModalProps} props - Propiedades del componente
  * @returns {JSX.Element} Modal con el reproductor de video
  */
-export function TrailerModal({ trailer }: TrailerModalProps) {
+export function TrailerModal({ trailer }: TrailerModalProps): JSX.Element {
   return (
     <Dialog>
       {/* Botón para abrir el modal */}
