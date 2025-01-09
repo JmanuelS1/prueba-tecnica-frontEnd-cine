@@ -21,7 +21,7 @@ export interface Movie {
  * Contiene toda la información de Movie más campos adicionales
  * específicos para la vista detallada de una película
  */
-export interface MovieDetail extends Omit<Movie, 'genre_ids'> {
+export interface MovieDetail extends Omit<Movie, "genre_ids"> {
   genres: Genre[];
   runtime: number;
   tagline: string;

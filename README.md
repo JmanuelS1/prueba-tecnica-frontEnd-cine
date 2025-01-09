@@ -4,13 +4,14 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 
 ## 📖 Documentación Completa
 
- **¡DESTACADO!** Este proyecto está completamente documentado, incluyendo:
- - Documentación JSDoc en todos los componentes
- - Tipos TypeScript completamente documentados
- - Hooks personalizados con documentación detallada
- - Documentación de Redux (reducers y store)
- - Utilidades y helpers documentados
- - Ejemplos de uso en cada módulo
+**¡DESTACADO!** Este proyecto está completamente documentado, incluyendo:
+
+- Documentación JSDoc en todos los componentes
+- Tipos TypeScript completamente documentados
+- Hooks personalizados con documentación detallada
+- Documentación de Redux (reducers y store)
+- Utilidades y helpers documentados
+- Ejemplos de uso en cada módulo
 
 ## 🚀 Características
 
@@ -42,11 +43,13 @@ Este proyecto es una aplicación web de películas desarrollada como parte de un
 git clone https://github.com/JmanuelS1/prueba-tecnica-frontEnd-cine.git
 
 2. Navega al directorio del proyecto:
+
 ```bash
 cd frontend-challenge
 ```
 
 3. Instala las dependencias:
+
 ```bash
 npm install
 # o
@@ -54,11 +57,13 @@ yarn install
 ```
 
 4. Crea un archivo `.env.local` en la raíz del proyecto y añade las variables de entorno necesarias:
+
 ```bash
 NEXT_PUBLIC_API_URL=tu_url_api
 ```
 
 5. Inicia el servidor de desarrollo:
+
 ```bash
 npm run dev
 # o
@@ -68,9 +73,9 @@ yarn dev
 La aplicación estará disponible en `http://localhost:3000`
 
 ## 🔑 Credenciales de Prueba
+
 Email: test@gmail.com
 Password: pass
-
 
 ## 📁 Estructura del Proyecto
 
@@ -84,14 +89,16 @@ src/
   └── types/           # Definiciones de tipos TypeScript
 ```
 
-
 ## 🧪 Testing
+
 npm run test
+
 # o
+
 yarn test
 
-
 ## 📚 Documentación de Componentes
+
 AuthModal
 Modal de autenticación que maneja tanto el login como el registro (UI only).
 MovieCard
@@ -101,11 +108,9 @@ Barra de navegación principal con búsqueda y acciones de usuario.
 FavoriteButton
 Botón para gestionar películas favoritas.
 
-
 ## 🤝 Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría realizar.
-
 
 ## 📝 Notas
 
@@ -113,10 +118,9 @@ Las contribuciones son bienvenidas. Por favor, abre un issue primero para discut
 - Los favoritos se almacenan localmente
 - La API tiene un límite de rate
 
-
 ## 👨‍💻 Autor
-Jesús Manuel Sánchez Rincón
 
+Jesús Manuel Sánchez Rincón
 
 ## 📄 Licencia
 

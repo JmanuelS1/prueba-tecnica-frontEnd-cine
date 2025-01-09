@@ -164,23 +164,23 @@ export default function Home(): JSX.Element {
             )}
             {filteredMovies.length === 0 && (
               <>
-                <MovieGrid 
-                  title="Popular Movies" 
+                <MovieGrid
+                  title="Popular Movies"
                   movies={dataPopular}
                   genre={genre.genre || defaultGenre}
                 />
-                <MovieGrid 
-                  title="Now Playing" 
+                <MovieGrid
+                  title="Now Playing"
                   movies={dataNowPlaying}
                   genre={genre.genre || defaultGenre}
                 />
-                <MovieGrid 
-                  title="Coming Soon" 
+                <MovieGrid
+                  title="Coming Soon"
                   movies={dataUpComing}
                   genre={genre.genre || defaultGenre}
                 />
-                <MovieGrid 
-                  title="Top Rated" 
+                <MovieGrid
+                  title="Top Rated"
                   movies={dataTopRated}
                   genre={genre.genre || defaultGenre}
                 />

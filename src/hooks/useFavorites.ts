@@ -59,7 +59,7 @@ export const useFavorites = create<FavoritesState>()(
       toggleFavorite: (movie: Movie): void => {
         const { favorites } = get();
         const exists = favorites.find((f) => f.id === movie.id);
-        
+
         if (exists) {
           set({ favorites: favorites.filter((f) => f.id !== movie.id) });
         } else {

@@ -53,7 +53,11 @@ interface MovieGridProps {
  * @param {MovieGridProps} props - Propiedades del componente
  * @returns {JSX.Element} Sección con el grid de películas
  */
-export default function MovieGrid({ title, movies, genre }: MovieGridProps): JSX.Element {
+export default function MovieGrid({
+  title,
+  movies,
+  genre,
+}: MovieGridProps): JSX.Element {
   /**
    * Referencias y estados
    */
@@ -69,9 +73,7 @@ export default function MovieGrid({ title, movies, genre }: MovieGridProps): JSX
       </h2>
       <div className="flex items-center gap-4 mb-6">
         {/* Nombre del género seleccionado */}
-        <h3 className="text-3xl font-semibold text-gray-300">
-          {genre.name}
-        </h3>
+        <h3 className="text-3xl font-semibold text-gray-300">{genre.name}</h3>
 
         {/* Botón para limpiar filtro de género */}
         {genre.name && (

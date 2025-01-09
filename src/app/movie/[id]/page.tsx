@@ -38,6 +38,7 @@ async function getMovie(id: string): Promise<MovieDetail | null> {
     }
 
     const data: MovieDetail = await response.json();
+
     return data;
   } catch (error) {
     console.error("Error fetching movie:", error);

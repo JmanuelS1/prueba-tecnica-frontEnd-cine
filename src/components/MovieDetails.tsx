@@ -36,7 +36,9 @@ interface MovieDetailsProps {
  * @param {MovieDetailsProps} props - Propiedades del componente
  * @returns {JSX.Element} Componente MovieDetails renderizado
  */
-export default function MovieDetails({ movie }: MovieDetailsProps): JSX.Element {
+export default function MovieDetails({
+  movie,
+}: MovieDetailsProps): JSX.Element {
   const router = useRouter();
   const [trailer, setTrailer] = useState<MovieVideo | null>(null);
   const [recommendations, setRecommendations] = useState<MovieDetailType[]>([]);
@@ -127,7 +129,7 @@ export default function MovieDetails({ movie }: MovieDetailsProps): JSX.Element 
         overview: movie.overview,
         vote_average: movie.vote_average,
         release_date: movie.release_date,
-        genre_ids: movie.genres.map(genre => genre.id)
+        genre_ids: movie.genres.map((genre) => genre.id),
       };
       toggleFavorite(movieForFavorite);
     } else {
@@ -286,7 +288,9 @@ export default function MovieDetails({ movie }: MovieDetailsProps): JSX.Element 
                       >
                         <FaHeart
                           className={`w-8 h-8 ${
-                            isFavorite(movie.id) ? "text-[#FF3B30]" : "text-gray-400"
+                            isFavorite(movie.id)
+                              ? "text-[#FF3B30]"
+                              : "text-gray-400"
                           }`}
                         />
                       </Button>
