@@ -139,7 +139,7 @@ const Sidebar: React.FC<SidebarProps> = ({ movies }): JSX.Element => {
   };
 
   const handleSearchMovie = async (
-    ev: React.FormEvent<HTMLFormElement>
+    ev: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     ev.preventDefault();
     await fetchMoviesBySearch(search);
