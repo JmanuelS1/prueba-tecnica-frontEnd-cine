@@ -22,7 +22,9 @@ const DialogTrigger = DialogPrimitive.Trigger;
  * @component
  * @param props - Propiedades del portal de Radix UI
  */
-const DialogPortal = ({ ...props }: DialogPrimitive.DialogPortalProps): JSX.Element => (
+const DialogPortal = ({ 
+  ...props
+ }: DialogPrimitive.DialogPortalProps): JSX.Element => (
   <DialogPrimitive.Portal {...props} />
 );
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;

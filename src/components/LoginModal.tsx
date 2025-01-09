@@ -41,7 +41,9 @@ export default function AuthModal(): JSX.Element {
    * Maneja el envío de los formularios de login y registro
    * @param {React.FormEvent<HTMLFormElement>} e - Evento del formulario
    */
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {

@@ -41,7 +41,7 @@ const initialState = {
  *   payload: []
  * });
  */
-export const searchMovieReducer = (state = initialState, action: any) => {
+export const searchMovieReducer = (state = initialState, action: any): any => {
   switch (action.type) {
     case "SET_SEARCH":
       return { ...state, search: action.payload };
